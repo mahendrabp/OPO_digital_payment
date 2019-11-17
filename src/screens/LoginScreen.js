@@ -21,7 +21,7 @@ class LoginScreen extends Component {
         <Text style={styles.subTitle}>Digital Payment</Text>
         <View style={styles.InputText}>
           <Form>
-            <Item floatingLabel>
+            <Item>
               <Icon name="person" style={styles.iconNumber} />
               <Label style={styles.labelInput}> Nomor Ponsel</Label>
               <Input
@@ -42,7 +42,7 @@ class LoginScreen extends Component {
         <Button block transparent style={styles.buttonHelp}>
           <Image
             style={styles.iconHelp}
-            source={require('./../assets/img/needhelp.png')}
+            source={require('./../../assets/img/needhelp.png')}
           />
           <Text style={styles.HelpText}>Butuh bantuan?</Text>
         </Button>
