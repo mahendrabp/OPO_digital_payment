@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Alert, Image} from 'react-native';
-import {Button, Form, Item, Label, Input} from 'native-base';
+import {Button, Form, Item, Label, Input, Icon} from 'native-base';
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isNumberValid: false,
+      isButton: false,
     };
   }
   SignAlert = () => {
@@ -18,19 +19,21 @@ class LoginScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.textScreen}>OPO</Text>
         <Text style={styles.subTitle}>Digital Payment</Text>
-        <Form style={styles.InputText}>
-          <Item floatingLabel>
-            <Label style={styles.labelInput}>Nomor Ponsel</Label>
-            <Input style={styles.InputPonsel} keyboardType={'numeric'} />
-          </Item>
-        </Form>
-        <Button
-          block
-          bordered
-          light
-          style={styles.buttonInput}
-          onPress={this.SignAlert}>
-          <Text style={styles.ButtonText}>SIGN IN</Text>
+        <View style={styles.InputText}>
+          <Form>
+            <Item floatingLabel>
+              <Icon name="person" style={styles.iconNumber} />
+              <Label style={styles.labelInput}> Nomor Ponsel</Label>
+              <Input
+                style={styles.InputPonsel}
+                maxLength={15}
+                keyboardType={'numeric'}
+              />
+            </Item>
+          </Form>
+        </View>
+        <Button block bordered light style={styles.buttonInputValid}>
+          <Text style={styles.ButtonTextValid}>SIGN IN</Text>
         </Button>
         <Text style={styles.atau}> ───────────── ATAU ───────────── </Text>
         <Button block style={styles.buttonInputJoin}>
@@ -53,6 +56,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#8e44ad',
+  },
+  iconNumber: {
+    color: '#fff',
   },
   buttonHelp: {
     marginTop: 10,
@@ -96,7 +102,7 @@ const styles = StyleSheet.create({
   },
   InputText: {
     marginLeft: 20,
-    marginRight: 20,
+    marginRight: 30,
     color: '#fff',
   },
   ButtonText: {
@@ -104,12 +110,30 @@ const styles = StyleSheet.create({
     marginRight: 20,
     color: '#fff',
   },
-  buttonInput: {
+  ButtonTextInValid: {
+    marginLeft: 20,
+    marginRight: 20,
+    color: '#b2bec3',
+  },
+  ButtonTextValid: {
+    marginLeft: 20,
+    marginRight: 20,
+    color: '#fff',
+  },
+  buttonInputValid: {
     marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
     color: '#fff',
     borderRadius: 30,
+  },
+  buttonInputInValid: {
+    marginTop: 30,
+    marginLeft: 20,
+    marginRight: 20,
+    color: '#fff',
+    borderRadius: 30,
+    borderColor: '#b2bec3',
   },
   buttonInputJoin: {
     marginTop: 20,
