@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
-import {Input, Button, Form, Item, Label} from 'native-base';
+import {StyleSheet, View, Text, Alert, Image} from 'react-native';
+import {Button, Form, Item, Label, Input} from 'native-base';
 
-export default class LoginScreen extends Component {
-  
+class LoginScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isNumberValid: false,
+    };
+  }
   SignAlert = () => {
     Alert.alert('Perhatian!', 'Nomor ponsel tidak valid');
   };
@@ -16,7 +21,7 @@ export default class LoginScreen extends Component {
         <Form style={styles.InputText}>
           <Item floatingLabel>
             <Label style={styles.labelInput}>Nomor Ponsel</Label>
-            <Input />
+            <Input style={styles.InputPonsel} keyboardType={'numeric'} />
           </Item>
         </Form>
         <Button
@@ -24,15 +29,19 @@ export default class LoginScreen extends Component {
           bordered
           light
           style={styles.buttonInput}
-          onPress={() => this.SignAlert}>
+          onPress={this.SignAlert}>
           <Text style={styles.ButtonText}>SIGN IN</Text>
         </Button>
         <Text style={styles.atau}> ───────────── ATAU ───────────── </Text>
         <Button block style={styles.buttonInputJoin}>
           <Text style={styles.ButtonText}>JOIN NOW</Text>
         </Button>
-        <Button block transparent style={styles.buttonInput}>
-          <Text style={styles.ButtonHelp}>Butuh bantuan?</Text>
+        <Button block transparent style={styles.buttonHelp}>
+          <Image
+            style={styles.iconHelp}
+            source={require('./../assets/img/needhelp.png')}
+          />
+          <Text style={styles.HelpText}>Butuh bantuan?</Text>
         </Button>
       </View>
     );
@@ -45,12 +54,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#8e44ad',
   },
+  buttonHelp: {
+    marginTop: 10,
+  },
+  InputPonsel: {
+    color: '#fff',
+  },
   subTitle: {
     fontSize: 20,
     textAlign: 'center',
     color: '#fff',
+    marginBottom: 30,
   },
-  ButtonHelp: {
+  iconHelp: {
+    width: 20,
+    height: 30,
+    resizeMode: 'contain',
+    marginRight: 10,
+  },
+  HelpText: {
     color: '#00d2d3',
     fontSize: 15,
   },
@@ -66,7 +88,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#fff',
     fontSize: 50,
-    // marginBottom: 20,
     textAlign: 'center',
   },
   labelInput: {
@@ -105,3 +126,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+export default LoginScreen;
