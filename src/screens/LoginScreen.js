@@ -21,7 +21,7 @@ class LoginScreen extends Component {
         <Text style={styles.subTitle}>Digital Payment</Text>
         <View style={styles.InputText}>
           <Form>
-            <Item>
+            <Item floatingLabel>
               <Icon name="person" style={styles.iconNumber} />
               <Label style={styles.labelInput}> Nomor Ponsel</Label>
               <Input
