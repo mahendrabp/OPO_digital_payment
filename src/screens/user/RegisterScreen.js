@@ -26,7 +26,9 @@ class RegisterScreen extends Component {
       isEmailValid: true,
       isNameValid: true,
       isPhoneValid: true,
-
+      invalidNameMessage: '',
+      invalidPhoneMessage: '',
+      invalidEmailMessage: '',
       value: '',
       secureTextEntry: true,
     };
@@ -44,13 +46,13 @@ class RegisterScreen extends Component {
       this.setState({
         email: value,
         isEmailValid: false,
-        invalidMessage: 'email tidak valid',
+        invalidEmailMessage: 'email tidak valid',
       });
     } else if (value === '' || value === null) {
       this.setState({
         email: value,
         isEmailValid: false,
-        invalidMessage: 'email tidak boleh kosong',
+        invalidEmailMessage: 'email tidak boleh kosong',
       });
     } else {
       this.setState({
@@ -65,7 +67,7 @@ class RegisterScreen extends Component {
       this.setState({
         name: value,
         isNameValid: false,
-        invalidMessage: 'name tidak boleh kosong',
+        invalidNameMessage: 'nama tidak boleh kosong',
       });
     } else {
       this.setState({
@@ -81,13 +83,13 @@ class RegisterScreen extends Component {
       this.setState({
         phone: value,
         isPhoneValid: false,
-        invalidMessage: 'no telepon tidak valid',
+        invalidPhoneMessage: 'no telepon tidak valid',
       });
     } else if (value === '' || value === null) {
       this.setState({
         phone: value,
         isPhoneValid: false,
-        invalidMessage: 'no telepon tidak boleh kosong',
+        invalidPhoneMessage: 'no telepon tidak boleh kosong',
       });
     } else {
       this.setState({
@@ -109,21 +111,38 @@ class RegisterScreen extends Component {
         </View>
         <View style={styles.wrapperForm}>
           <Form>
-            <Item error floatingLabel>
+            <Item error={this.state.isNameValid ? false : true} floatingLabel>
               <Label style={styles.fontSize}>Nama Lengkap</Label>
               <Input onChangeText={value => this.onChangeName(value)} />
             </Item>
-            <Item floatingLabel last>
+            {!this.state.isNameValid && (
+              <Text style={styles.errorText}>
+                {this.state.invalidNameMessage}
+              </Text>
+            )}
+
+            <Item floatingLabel error={this.state.isPhoneValid ? false : true}>
               <Label style={styles.fontSize}>Nomor Ponsel</Label>
               <Input onChangeText={value => this.onChangePhone(value)} />
             </Item>
-            <Item floatingLabel last>
+            {!this.state.isPhoneValid && (
+              <Text style={styles.errorText}>
+                {this.state.invalidPhoneMessage}
+              </Text>
+            )}
+
+            <Item floatingLabel error={this.state.isEmailValid ? false : true}>
               <Label style={styles.fontSize}>Email</Label>
               <Input
                 onChangeText={value => this.onChangeEmail(value)}
                 value={this.state.email}
               />
             </Item>
+            {!this.state.isEmailValid && (
+              <Text style={styles.errorText}>
+                {this.state.invalidEmailMessage}
+              </Text>
+            )}
             <Item floatingLabel last>
               <Label style={styles.fontSize}>
                 Kode Promosi/Referesi: (optional)
@@ -179,6 +198,7 @@ const styles = StyleSheet.create({
     width: 300,
   },
   buttonTextStyle: {color: '#ffffff', textAlign: 'center'},
+  errorText: {color: 'red', fontSize: 12, marginLeft: 20},
 });
 
 export default RegisterScreen;
