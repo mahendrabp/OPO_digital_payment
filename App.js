@@ -1,15 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
-
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import LoginScreen from './src/screens/user/LoginScreen';
+import SplashScreen from './src/screens/user/SplashScreen';
+
 import RegisterScreen from './src/screens/user/RegisterScreen';
 
 function App() {
@@ -30,8 +24,29 @@ const MainNavigator = createStackNavigator({
       },
     },
   },
+
+  SplashScreen: {
+    screen: SplashScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  LoginScreen: {
+    screen: LoginScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 const AppContainer = createAppContainer(MainNavigator);
+
+// const AppContainer = createAppContainer(StackNavigator);
+
+// class App extends Component {
+//   render() {
+//     return <AppContainer />;
+//   }
+// }
 
 export default App;
