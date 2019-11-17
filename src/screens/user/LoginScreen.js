@@ -42,7 +42,7 @@ class LoginScreen extends Component {
         <Button block transparent style={styles.buttonHelp}>
           <Image
             style={styles.iconHelp}
-            source={require('./../../assets/img/needhelp.png')}
+            source={require('../../../assets/img/needhelp.png')}
           />
           <Text style={styles.HelpText}>Butuh bantuan?</Text>
         </Button>

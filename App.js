@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import LoginScreen from './src/screens/LoginScreen';
-import SplashScreen from './src/screens/SplashScreen';
+import LoginScreen from './src/screens/user/LoginScreen';
+import SplashScreen from './src/screens/user/SplashScreen';
 
 const StackNavigator = createStackNavigator({
   SplashScreen: {
@@ -23,9 +23,7 @@ const AppContainer = createAppContainer(StackNavigator);
 
 class App extends Component {
   render() {
-    return (
-      <AppContainer/>
-    )
+    return <AppContainer />;
   }
 }
 
