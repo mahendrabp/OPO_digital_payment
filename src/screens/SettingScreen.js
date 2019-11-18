@@ -50,7 +50,7 @@ class SettingScreen extends Component {
             Version 1.0.0(001)
           </Text>
         </View>
-        <View style={{marginTop: 15, marginHorizontal: 30}}>
+        <View style={{marginTop: 20, marginHorizontal: 30}}>
           <Button bordered block rounded style={{borderColor: '#07B2BD'}}>
             <Text style={{color: '#07B2BD'}}>SIGN OUT</Text>
           </Button>

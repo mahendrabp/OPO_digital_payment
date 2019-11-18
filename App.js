@@ -20,8 +20,13 @@ const MainNavigator = createStackNavigator({
   SettingScreen: {
     screen: SettingScreen,
     navigationOptions: {
+      title: 'SETTINGS',
       headerStyle: {
         backgroundColor: '#534090',
+      },
+      headerTitleStyle: {
+        color: '#FEFEFF',
+        fontSize: 15,
       },
     },
   },
