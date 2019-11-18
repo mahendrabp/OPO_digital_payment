@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './src/screens/user/LoginScreen';
 import SplashScreen from './src/screens/user/SplashScreen';
+import SettingScreen from './src/screens/SettingScreen';
 
 import RegisterScreen from './src/screens/user/RegisterScreen';
 
@@ -16,6 +17,14 @@ function App() {
 }
 
 const MainNavigator = createStackNavigator({
+  SettingScreen: {
+    screen: SettingScreen,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#534090',
+      },
+    },
+  },
   RegisterScreen: {
     screen: RegisterScreen,
     navigationOptions: {
@@ -24,7 +33,6 @@ const MainNavigator = createStackNavigator({
       },
     },
   },
-
   SplashScreen: {
     screen: SplashScreen,
     navigationOptions: {

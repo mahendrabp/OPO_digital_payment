@@ -39,7 +39,11 @@ class LoginScreen extends Component {
         <Button block style={styles.buttonInputJoin}>
           <Text style={styles.ButtonText}>JOIN NOW</Text>
         </Button>
-        <Button block transparent style={styles.buttonHelp}>
+        <Button
+          onPress={() => this.props.navigation.navigate('RegisterScreen')}
+          block
+          transparent
+          style={styles.buttonHelp}>
           <Image
             style={styles.iconHelp}
             source={require('../../../assets/img/needhelp.png')}
