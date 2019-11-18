@@ -26,7 +26,7 @@ const MainNavigator = createStackNavigator({
       },
       headerTitleStyle: {
         color: '#FEFEFF',
-        fontSize: 15,
+        fontSize: 13,
       },
     },
   },
