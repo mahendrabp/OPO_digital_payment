@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#8e44ad',
+    backgroundColor: '#4E2A87',
   },
   iconNumber: {
     color: '#fff',

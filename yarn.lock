@@ -5451,6 +5451,11 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-native-app-intro-slider@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-app-intro-slider/-/react-native-app-intro-slider-3.0.0.tgz#c3620b967503ce410b3d767252392bb6fb2edf97"
+  integrity sha512-2XXUYnSeMYZTLhdRYHSwv8mhoyuEaYxmQfXrWQInH1QvjsnJtKgvORI3bJuJN+tNPg3aut6JYYCNOFsI5of32A==
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
@@ -5518,6 +5523,14 @@ react-native-vector-icons@^6.6.0:
     lodash "^4.0.0"
     prop-types "^15.6.2"
     yargs "^13.2.2"
+
+react-native-viewpager@^0.2.13:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/react-native-viewpager/-/react-native-viewpager-0.2.13.tgz#75e421ae90e89efcd77d2c077c0525382b7c39c5"
+  integrity sha1-deQhrpDonvzXfSwHfAUlOCt8OcU=
+  dependencies:
+    react-timer-mixin "^0.13.3"
+    warning "^2.1.0"
 
 react-native@0.61.4:
   version "0.61.4"
@@ -5589,7 +5602,7 @@ react-test-renderer@16.9.0:
     react-is "^16.9.0"
     scheduler "^0.15.0"
 
-react-timer-mixin@^0.13.4:
+react-timer-mixin@^0.13.3, react-timer-mixin@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
@@ -5871,6 +5884,11 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-viewpager@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/rn-viewpager/-/rn-viewpager-1.2.9.tgz#7f06f898e23b296f3b5be7c98bd9101d94427779"
+  integrity sha512-wN4HlNhjTkrg25qBeEHTJ6TzRGtLu8SpKSZ9/mWcgWHMNr3RT06Zzrky3Tg14PPgaPp//6h02FCcAaQ83VGdgQ==
 
 rsvp@^4.8.4:
   version "4.8.5"
@@ -6783,6 +6801,13 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+warning@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
+  integrity sha1-ISINnGOvx3qMkhEeARr3Bc4MaQE=
+  dependencies:
+    loose-envify "^1.0.0"
 
 wcwidth@^1.0.1:
   version "1.0.1"

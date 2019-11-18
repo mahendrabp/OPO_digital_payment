@@ -3,9 +3,10 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 export default class SplashScreen extends Component {
+  
   componentDidMount() {
     setInterval(() => {
-      this.props.navigation.navigate('LoginScreen');
+      this.props.navigation.navigate('IntroScreen');
     }, 4000);
   }
 
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#8e44ad',
+    backgroundColor: '#4E2A87',
   },
   subTitle: {
     fontSize: 20,
