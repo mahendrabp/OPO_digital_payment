@@ -5,6 +5,8 @@ import LoginScreen from './src/screens/user/LoginScreen';
 import SplashScreen from './src/screens/user/SplashScreen';
 import IntroScreen from './src/screens/IntroScreen';
 import HelpScreen from './src/screens/user/HelpScreen';
+import OTP from './src/screens/user/OTP';
+import SecurityCode from './src/screens/user/SecurityCode';
 
 const StackNavigator = createStackNavigator({
   SplashScreen: {
@@ -27,6 +29,18 @@ const StackNavigator = createStackNavigator({
   },
   LoginScreen: {
     screen: LoginScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  SecurityCode: {
+    screen: SecurityCode,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  OTP: {
+    screen: OTP,
     navigationOptions: {
       header: null,
     },

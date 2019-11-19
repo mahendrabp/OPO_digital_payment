@@ -21,6 +21,10 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('HelpScreen');
   };
 
+  goToOTP = () => {
+    this.props.navigation.navigate('OTP');
+  };
+
   validateFieldNumber = bool => {
     const {number} = this.state;
     if (number === '') {
@@ -49,7 +53,8 @@ class LoginScreen extends Component {
 
   SignAlert = () => {
     if (this.validateFieldNumber()) {
-      Alert.alert('Perhatian!', 'Success Login');
+      // Alert.alert('Perhatian!', 'Success Login');
+      this.goToOTP();
     }
   };
   render() {
