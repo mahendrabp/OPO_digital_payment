@@ -3,9 +3,8 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 export default class SplashScreen extends Component {
-  
   componentDidMount() {
-    setInterval(() => {
+    setTimeout(() => {
       this.props.navigation.navigate('IntroScreen');
     }, 4000);
   }

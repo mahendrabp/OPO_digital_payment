@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Alert, Image} from 'react-native';
+import {StyleSheet, View, Text, Alert, Image, BackHandler} from 'react-native';
 import {Button, Form, Item, Label, Input, Icon} from 'native-base';
 
 class LoginScreen extends Component {
@@ -10,10 +10,10 @@ class LoginScreen extends Component {
       isButton: false,
     };
   }
+
   SignAlert = () => {
     Alert.alert('Perhatian!', 'Nomor ponsel tidak valid');
   };
-
   render() {
     return (
       <View style={styles.container}>
