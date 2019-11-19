@@ -63,34 +63,34 @@ const styles = StyleSheet.create({
 
 const slides = [
   {
-    key: 1,
+    key: '1',
     title: 'Hai, Selamat bergabung di OPO Digital Payment',
     text: '',
     image: require('./../../assets/img/page1.png'),
   },
   {
-    key: 2,
+    key: '2',
     title: 'Poin Berlipat',
     text:
       'Kamu bisa menggunakan OPO Points tiap belanja di berbaga Merchant rekanan',
     image: require('./../../assets/img/page2.png'),
   },
   {
-    key: 3,
+    key: '3',
     title: 'Kirim uang lebih mudah ke seluruh Indonesia',
     text:
       'Hanya dengan memasukkan rekening Bank atau nomor ponsel yang telah terdaftar sebagai OPO untuk transfer',
     image: require('./../../assets/img/page3.png'),
   },
   {
-    key: 4,
+    key: '4',
     title: 'Promo Memikat',
     text:
       'Hanya dengan memasukkan rekening Bank atau nomor ponsel yang telah terdaftar sebagai OPO untuk transfer',
     image: require('./../../assets/img/page4.png'),
   },
   {
-    key: 5,
+    key: '5',
     title: 'Atur Keuangan Dengan Tepat',
     text:
       'Nggak akan ada kebocoran keuangan karena sudah dibuat perencanaan setiap bulan',

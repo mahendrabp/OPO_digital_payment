@@ -8,11 +8,49 @@ class LoginScreen extends Component {
     this.state = {
       isNumberValid: false,
       isButton: false,
+      number: '',
     };
   }
 
+  onChangeNumber = value => {
+    this.setState({number: value});
+    console.log(value);
+  };
+
+  goToHelp = () => {
+    this.props.navigation.navigate('HelpScreen');
+  };
+
+  validateFieldNumber = bool => {
+    const {number} = this.state;
+    if (number === '') {
+      Alert.alert('Perhatian!', 'Masukan Nomor Ponsel');
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackPress,
+    );
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleBackPress = () => {
+    BackHandler.exitApp();
+    return true;
+  };
+
   SignAlert = () => {
-    Alert.alert('Perhatian!', 'Nomor ponsel tidak valid');
+    if (this.validateFieldNumber()) {
+      Alert.alert('Perhatian!', 'Success Login');
+    }
   };
   render() {
     return (
@@ -28,11 +66,17 @@ class LoginScreen extends Component {
                 style={styles.InputPonsel}
                 maxLength={15}
                 keyboardType={'numeric'}
+                onChangeText={this.onChangeNumber}
               />
             </Item>
           </Form>
         </View>
-        <Button block bordered light style={styles.buttonInputValid}>
+        <Button
+          block
+          bordered
+          light
+          style={styles.buttonInputValid}
+          onPress={() => this.SignAlert()}>
           <Text style={styles.ButtonTextValid}>SIGN IN</Text>
         </Button>
         <Text style={styles.atau}> ───────────── ATAU ───────────── </Text>
@@ -44,7 +88,9 @@ class LoginScreen extends Component {
             style={styles.iconHelp}
             source={require('../../../assets/img/needhelp.png')}
           />
-          <Text style={styles.HelpText}>Butuh bantuan?</Text>
+          <Text style={styles.HelpText} onPress={() => this.goToHelp()}>
+            Butuh bantuan?
+          </Text>
         </Button>
       </View>
     );

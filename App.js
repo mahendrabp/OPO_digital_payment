@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './src/screens/user/LoginScreen';
 import SplashScreen from './src/screens/user/SplashScreen';
 import IntroScreen from './src/screens/IntroScreen';
+import HelpScreen from './src/screens/user/HelpScreen';
 
 const StackNavigator = createStackNavigator({
   SplashScreen: {
@@ -14,6 +15,12 @@ const StackNavigator = createStackNavigator({
   },
   IntroScreen: {
     screen: IntroScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  HelpScreen: {
+    screen: HelpScreen,
     navigationOptions: {
       header: null,
     },
