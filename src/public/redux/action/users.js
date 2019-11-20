@@ -21,13 +21,13 @@ export const loginstep2 = data => {
 
 export const signupstep1 = data => {
   return {
-    type: 'SIGNUP_STEP2',
-    payload: axios.post(URILogin + 'step2', data),
+    type: 'SIGNUP_STEP1',
+    payload: axios.post(URISignUp + 'step1', data),
   };
 };
 export const signupstep2 = data => {
   return {
     type: 'SIGNUP_STEP2',
-    payload: axios.post(URILogin + 'step2', data),
+    payload: axios.post(URISignUp + 'step2', data),
   };
 };

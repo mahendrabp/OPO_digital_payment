@@ -43,10 +43,10 @@ class SecurityCode extends Component {
   //   await this.props.navigation.navigate('HelpScreen');
   // };
 
-  goSubmit = async () => {
+  goSubmit = () => {
     const {phone} = this.state;
     const securityCode = this.state.input.toString().replace(/,/g, '');
-    console.log(this.state.phone);
+    // console.log(this.state.phone);
 
     if (securityCode.length === 6) {
       this.props.dispatch(loginstep2({phone, securityCode}));
@@ -222,9 +222,12 @@ class SecurityCode extends Component {
                   this.setState({
                     input: [...this.state.input, input],
                   });
-                  this.fourthTextInput.focus();
                 }}
-                onSubmitEditing={this.goSubmit()}
+                // onChangeText={input => {
+                //   this.setState({input: [...this.state.input, input]});
+                //   this.goSubmit;
+                // }}
+                onSubmitEditing={this.goSubmit}
               />
             </Item>
           </View>
