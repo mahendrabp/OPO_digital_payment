@@ -3,8 +3,6 @@ import React from 'react';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import MyHeader from './../header/Header';
-
 import HomeTab from './home';
 import DealsTab from './deals';
 import FinanceTab from './finance';
@@ -60,6 +58,7 @@ export default createMaterialTopTabNavigator(
     },
   },
   {
+    swipeEnabled: true,
     tabBarOptions: {
       activeTintColor: '#ffffff',
       labelStyle: {

@@ -1,7 +1,3 @@
-const React = require('react-native');
-const {Dimensions} = React;
-const deviceWidth = Dimensions.get('window').width;
-
 export default {
   viewBalance: {
     backgroundColor: '#4E2A87',
@@ -69,10 +65,10 @@ export default {
   carouselPage: {
     flex: 1,
     alignItems: 'center',
-    marginLeft:10,
-    marginRight:10,
+    marginLeft: 10,
+    marginRight: 10,
     justifyContent: 'center',
     backgroundColor: '#ffffff',
-    width: deviceWidth-20,
+    width: deviceWidth - 20,
   },
 };

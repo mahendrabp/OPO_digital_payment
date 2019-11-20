@@ -44,7 +44,7 @@ export default class Home extends Component {
           <View style={styles.viewBalance}>
             <View style={styles.balance}>
               <View style={{flexDirection: 'row'}}>
-                <View>
+                <View style={{flex:1}}>
                   <Text style={{color: '#ffffff'}}>OPO CASH</Text>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#E5A534', fontSize: 13}}>Rp</Text>
@@ -62,11 +62,9 @@ export default class Home extends Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'row',
-                    marginLeft: deviceWidth - 255,
-                    width: 100,
                   }}>
                   <TouchableOpacity>
-                    <Button transparent style={{marginRight: 20}}>
+                    <Button transparent style={{marginRight: 40}}>
                       <Icon name="redo-alt" color="#ffffff" size={20} />
                     </Button>
                   </TouchableOpacity>
@@ -180,7 +178,6 @@ export default class Home extends Component {
               onSnapToItem={index => this.setState({activeSlide: index})}
             />
             <View style={{marginBottom: 210}} />
-            {console.log(deviceWidth)}
           </View>
         </ScrollView>
       </View>
