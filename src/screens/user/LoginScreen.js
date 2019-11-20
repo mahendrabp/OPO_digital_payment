@@ -1,19 +1,32 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import {StyleSheet, View, Text, Alert, Image, BackHandler} from 'react-native';
 import {Button, Form, Item, Label, Input, Icon} from 'native-base';
+import {loginstep1} from '../../public/redux/action/users';
+import {connect} from 'react-redux';
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNumberValid: false,
+      isPhoneValid: false,
       isButton: false,
       number: '',
+      phone: '',
     };
   }
 
-  onChangeNumber = value => {
-    this.setState({number: value});
+  goSubmit = async () => {
+    const {phone} = this.state;
+    if (!this.state.phone) {
+      return;
+    } else {
+      await this.props.dispatch(loginstep1({phone}));
+      await this.props.navigation.navigate('Dashboard');
+    }
+  };
+
+  onChangePhone = value => {
+    this.setState({phone: value});
     console.log(value);
   };
 
@@ -25,9 +38,9 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('OTP');
   };
 
-  validateFieldNumber = bool => {
-    const {number} = this.state;
-    if (number === '') {
+  validateFieldPhone = bool => {
+    const {phone} = this.state;
+    if (phone === '') {
       Alert.alert('Perhatian!', 'Masukan Nomor Ponsel');
       return false;
     } else {
@@ -51,9 +64,12 @@ class LoginScreen extends Component {
     return true;
   };
 
-  SignAlert = () => {
-    if (this.validateFieldNumber()) {
+  SignAlert = async () => {
+    const {phone} = this.state;
+    if (this.validateFieldPhone()) {
       // Alert.alert('Perhatian!', 'Success Login');
+      await this.props.dispatch(loginstep1({phone}));
+      await this.props.navigation.navigate('Dashboard');
       this.goToOTP();
     }
   };
@@ -71,7 +87,7 @@ class LoginScreen extends Component {
                 style={styles.InputPonsel}
                 maxLength={15}
                 keyboardType={'numeric'}
-                onChangeText={this.onChangeNumber}
+                onChangeText={this.onChangePhone}
               />
             </Item>
           </Form>
@@ -202,4 +218,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+// export default LoginScreen;
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(LoginScreen);
