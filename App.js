@@ -11,10 +11,14 @@ import MenuTabs from './src/screens/menu';
 import MyHeader from './src/screens/header/Header';
 import LoginScreen from './src/screens/user/LoginScreen';
 import SplashScreen from './src/screens/user/SplashScreen';
+<<<<<<< HEAD
 import IntroScreen from './src/screens/IntroScreen';
 import HelpScreen from './src/screens/user/HelpScreen';
 import OTP from './src/screens/user/OTP';
 import SecurityCode from './src/screens/user/SecurityCode';
+=======
+import NotificationScreen from './src/screens/NotificationScreen';
+>>>>>>> NotificationScreen
 
 import store from './src/public/redux/store';
 
@@ -27,12 +31,25 @@ function App() {
   );
 }
 
+<<<<<<< HEAD
 const MainNavigator = createStackNavigator(
   {
     SplashScreen: {
       screen: SplashScreen,
       navigationOptions: {
         header: null,
+=======
+const MainNavigator = createStackNavigator({
+  NotificationScreen: {
+    screen: NotificationScreen,
+  },
+
+  RegisterScreen: {
+    screen: RegisterScreen,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#534090',
+>>>>>>> NotificationScreen
       },
     },
     IntroScreen: {
