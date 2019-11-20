@@ -43,7 +43,7 @@ class SecurityCode extends Component {
   //   await this.props.navigation.navigate('HelpScreen');
   // };
 
-  goSubmit() {
+  goSubmit = () => {
     const {phone} = this.state;
     const securityCode = this.state.input.toString().replace(/,/g, '');
     // console.log(this.state.phone);
@@ -51,7 +51,7 @@ class SecurityCode extends Component {
     if (securityCode.length === 6) {
       this.props.dispatch(loginstep2({phone, securityCode}));
     }
-  }
+  };
 
   componentDidMount() {
     // console.log(this.props.user.resultStep1);
@@ -223,6 +223,10 @@ class SecurityCode extends Component {
                     input: [...this.state.input, input],
                   });
                 }}
+                // onChangeText={input => {
+                //   this.setState({input: [...this.state.input, input]});
+                //   this.goSubmit;
+                // }}
                 onSubmitEditing={this.goSubmit}
               />
             </Item>
