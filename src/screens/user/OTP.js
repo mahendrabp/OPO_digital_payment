@@ -44,12 +44,13 @@ class OTP extends Component {
   };
 
   goSecure = () => {
-    const input = this.state.input.toString().replace(',', '');
-    console.log(input);
+    const input = this.state.input.toString().replace(/,/g, '');
+    console.log(this.state.otp);
     if (this.state.otp === input) {
       console.log('true');
+      this.props.navigation.navigate('SecurityCode');
+    } else {
     }
-    // this.props.navigation.navigate('SecurityCode');
   };
 
   handleBackPress = () => {
@@ -185,8 +186,8 @@ class OTP extends Component {
                       },
                     );
                     // this.lastOne.focus();
-                    this.goSecure();
                   }}
+                  onSubmitEditing={this.goSecure()}
                   blurOnSubmit={false}
                 />
               </Item>

@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import {Form, Item, Input, Label, Body, ListItem, Button} from 'native-base';
 // import CheckBox from '@react-native-community/checkbox';
-import {bold} from 'ansi-colors';
+import {connect} from 'react-redux';
+import {signupstep1} from '../../public/redux/action/users';
 
 const Strong = props => <Text style={styles.boldFont}>{props.children}</Text>;
 const Blue = props => <Text style={styles.blueColor}>{props.children}</Text>;
@@ -96,6 +97,16 @@ class RegisterScreen extends Component {
         phone: value,
         isPhoneValid: true,
       });
+    }
+  };
+
+  goSubmit = async () => {
+    const {email, name, phone, referral} = this.state;
+    if (!this.state.phone || !this.state.name) {
+      return;
+    } else {
+      await this.props.dispatch(signupstep1({email, name, phone, referral}));
+      await this.props.navigation.navigate('Dashboard');
     }
   };
 
@@ -201,4 +212,8 @@ const styles = StyleSheet.create({
   errorText: {color: 'red', fontSize: 12, marginLeft: 20},
 });
 
-export default RegisterScreen;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(RegisterScreen);
