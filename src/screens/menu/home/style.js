@@ -1,3 +1,7 @@
+const React = require('react-native');
+const {Dimensions} = React;
+const deviceWidth = Dimensions.get('window').width;
+
 export default {
   viewBalance: {
     backgroundColor: '#4E2A87',

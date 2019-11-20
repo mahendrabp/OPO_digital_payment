@@ -27,14 +27,25 @@ class MyHeader extends Component {
         <Header style={{backgroundColor: '#4E2A87'}}>
           <Left />
           <Body>
-            <Title>OPO</Title>
+            <Title
+              style={{
+                color: '#FCFCFE',
+                marginLeft: -50,
+                fontWeight: 'bold',
+                fontSize: 25,
+              }}>
+              OPO
+            </Title>
           </Body>
           <Right>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('AddJob')}>
+            <TouchableOpacity>
               <Button transparent>
-                <Icon name="plus-circle" color="#0000ff" size={25} />
-                <Text>Add Job</Text>
+                <Icon name="plus-circle" color="#B3A4C9" size={25} />
+              </Button>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Button transparent>
+                <Icon name="cog" color="#B3A4C9" size={30} />
               </Button>
             </TouchableOpacity>
           </Right>
