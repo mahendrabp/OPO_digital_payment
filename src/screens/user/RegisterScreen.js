@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {Form, Item, Input, Label, Body, ListItem, Button} from 'native-base';
-import CheckBox from '@react-native-community/checkbox';
+// import CheckBox from '@react-native-community/checkbox';
 import {bold} from 'ansi-colors';
 
 const Strong = props => <Text style={styles.boldFont}>{props.children}</Text>;
@@ -150,7 +150,7 @@ class RegisterScreen extends Component {
               <Input />
             </Item>
             <View style={styles.agreementStyle}>
-              <CheckBox checked={false} style={styles.blueColor} />
+              {/* <CheckBox checked={false} style={styles.blueColor} /> */}
               <Text style={styles.agreementText}>
                 Saya setuju dengan{' '}
                 <Strong>
