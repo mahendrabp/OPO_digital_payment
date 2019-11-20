@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Text, View, Image, Dimensions} from 'react-native';
 import styles from './style';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
-import {Button, Left, Header} from 'native-base';
+import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Carousel from 'react-native-snap-carousel';
 
@@ -30,7 +30,7 @@ export default class Home extends Component {
       ],
     };
   }
-  _renderItem({item, index}) {
+  _renderItem({item}) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Image source={item.illustration} />
@@ -44,7 +44,7 @@ export default class Home extends Component {
           <View style={styles.viewBalance}>
             <View style={styles.balance}>
               <View style={{flexDirection: 'row'}}>
-                <View style={{flex:1}}>
+                <View style={{flex: 1}}>
                   <Text style={{color: '#ffffff'}}>OPO CASH</Text>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#E5A534', fontSize: 13}}>Rp</Text>
@@ -103,7 +103,9 @@ export default class Home extends Component {
           <View style={styles.content}>
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => this.props.navigation.navigate('PLN')}>
                   <Icon name="bolt" color="#06B3BA" size={25} />
                 </Button>
                 <Text>PLN</Text>

@@ -1,10 +1,11 @@
 import {createStackNavigator} from 'react-navigation-stack';
-
-import MyHeader from './Header';
+import PLN from './pln';
+import Pulsa from './pulsa';
 
 export default createStackNavigator(
   {
-    MyHeader,
+    PLN,
+    Pulsa,
   },
   {
     headerMode: 'none',
