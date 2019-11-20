@@ -32,6 +32,10 @@ class HelpScreen extends Component {
     this.props.navigation.navigate('LoginScreen');
   };
 
+  goInfo = () => {
+    this.props.navigation.navigate('InfoUmum');
+  };
+
   componentWillUnmount() {
     this.backHandler.remove();
   }
@@ -102,7 +106,7 @@ class HelpScreen extends Component {
 }
 export default HelpScreen;
 
-function HelpItem({title, iconLeft}) {
+function HelpItem({title, iconLeft, click}) {
   return (
     <ListItem style={{flexDirection: 'row'}}>
       <View>
@@ -123,6 +127,7 @@ const itemHelp = [
     key: '1',
     iconLeft: 'exclamation-circle',
     title: 'Info Umum',
+    // click: this.goInfo(),
   },
   {
     key: '2',

@@ -54,7 +54,6 @@ export default {
   btnContentView: {
     backgroundColor: '#ffffff',
     borderWidth: 1,
-    padding: 10,
     width: 50,
     height: 50,
     alignItems: 'center',

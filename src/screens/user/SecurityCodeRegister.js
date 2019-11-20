@@ -13,48 +13,15 @@ import {
   Input,
   Item,
   Label,
-  Alert,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {connect} from 'react-redux';
-import {loginstep2} from '../../public/redux/action/users';
-class SecurityCode extends Component {
+class SecurityCodeRegister extends Component {
   constructor(props) {
     super(props);
     this.secondTextInput = null;
-    this.state = {
-      isPhoneValid: false,
-      isButton: false,
-      number: '',
-      phone: props.user.resultStep1.phone,
-      securityCode: '',
-      input: '',
-    };
   }
 
-  // goSubmit = async () => {
-  //   const {phone, securityCode} = this.state;
-  //   const stringSecuritycode = this.state.input.toString().replace(/,/g, '');
-  //   // this.setState({
-  //   //   securityCode: stringSecuritycode,
-  //   // });
-  //   // // Alert.alert('Perhatian!', 'Success Login');
-  //   await this.props.dispatch(loginstep2({phone, stringSecuritycode}));
-  //   await this.props.navigation.navigate('HelpScreen');
-  // };
-
-  goSubmit = () => {
-    const {phone} = this.state;
-    const securityCode = this.state.input.toString().replace(/,/g, '');
-    // console.log(this.state.phone);
-
-    if (securityCode.length === 6) {
-      this.props.dispatch(loginstep2({phone, securityCode}));
-    }
-  };
-
   componentDidMount() {
-    // console.log(this.props.user.resultStep1);
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       this.handleBackPress,
@@ -63,11 +30,10 @@ class SecurityCode extends Component {
 
   componentWillUnmount() {
     this.backHandler.remove();
-    // console.log(this.props.user);
   }
 
   goBack = () => {
-    this.props.navigation.navigate('OTP');
+    this.props.navigation.navigate('OTPRegister');
   };
 
   goMenu = () => {
@@ -79,15 +45,6 @@ class SecurityCode extends Component {
     return true;
   };
 
-  // goSecure = () => {
-  //   const input = this.state.input.toString().replace(/,/g, '');
-  //   // console.log(this.state.otp);
-  //   if (this.state.securityCode === input) {
-  //     console.log('true');
-  //     this.props.navigation.navigate('SecurityCode');
-  //   }
-  // };
-
   render() {
     return (
       <Container>
@@ -98,7 +55,7 @@ class SecurityCode extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{fontSize: 15}}>SIGN IN</Title>
+            <Title style={{fontSize: 15}}>SIGN UP</Title>
           </Body>
         </Header>
         <View>
@@ -122,10 +79,7 @@ class SecurityCode extends Component {
                 maxLength={1}
                 keyboardType={'numeric'}
                 secureTextEntry={true}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
                   this.secondTextInput.focus();
                 }}
                 blurOnSubmit={false}
@@ -142,10 +96,7 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.secondTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
                   this.thirdTextInput.focus();
                 }}
                 blurOnSubmit={false}
@@ -162,10 +113,7 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.thirdTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
                   this.fourthTextInput.focus();
                 }}
                 blurOnSubmit={false}
@@ -182,10 +130,7 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.fourthTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
                   this.fifthTextInput.focus();
                 }}
                 blurOnSubmit={false}
@@ -202,12 +147,9 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.fifthTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
                   this.lastTextInput.focus();
-                }}
+                }}  
                 blurOnSubmit={false}
               />
             </Item>
@@ -222,25 +164,12 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.lastTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                onChangeText={() => {
+                  this.goMenu();
                 }}
-                // onChangeText={input => {
-                //   this.setState({input: [...this.state.input, input]});
-                //   this.goSubmit;
-                // }}
-                onSubmitEditing={this.goSubmit}
+                blurOnSubmit={false}
               />
             </Item>
-          </View>
-        </View>
-        <View style={{marginTop: 80, alignSelf: 'center'}}>
-          <View>
-            <Text style={{fontWeight: 'bold', color: '#3498db'}}>
-              LUPA SECURITY CODE ?
-            </Text>
           </View>
         </View>
       </Container>
@@ -248,9 +177,4 @@ class SecurityCode extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(SecurityCode);
-// export default SecurityCode;
+export default SecurityCodeRegister;
