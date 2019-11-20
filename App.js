@@ -20,6 +20,7 @@ import IntroScreen from './src/screens/IntroScreen';
 import HelpScreen from './src/screens/user/HelpScreen';
 import OTP from './src/screens/user/OTP';
 import SecurityCode from './src/screens/user/SecurityCode';
+import HomeContent from './src/screens/homecontent';
 
 function App() {
   return (
@@ -64,6 +65,12 @@ const MainNavigator = createStackNavigator(
     },
     OTP: {
       screen: OTP,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    HomeContent: {
+      screen: HomeContent,
       navigationOptions: {
         header: null,
       },

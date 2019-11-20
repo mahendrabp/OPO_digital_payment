@@ -34,6 +34,7 @@ export default {
     borderRightWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: '#ECECED',
   },
   btnActionFirst: {
     width: (deviceWidth - 20) / 3,
@@ -44,6 +45,7 @@ export default {
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderLeftWidth: 1,
+    borderColor: '#ECECED',
   },
   content: {
     flexDirection: 'row',

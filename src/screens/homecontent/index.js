@@ -1,9 +1,11 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import Home from './home';
+import PLN from './pln';
+import Pulsa from './pulsa';
 
 export default createStackNavigator(
   {
-    Home,
+    PLN,
+    Pulsa,
   },
   {
     headerMode: 'none',
