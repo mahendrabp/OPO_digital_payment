@@ -15,7 +15,7 @@ import {
   Label,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-class SecurityCode extends Component {
+class SecurityCodeRegister extends Component {
   constructor(props) {
     super(props);
     this.secondTextInput = null;
@@ -33,7 +33,7 @@ class SecurityCode extends Component {
   }
 
   goBack = () => {
-    this.props.navigation.navigate('OTP');
+    this.props.navigation.navigate('OTPRegister');
   };
 
   goMenu = () => {
@@ -55,7 +55,7 @@ class SecurityCode extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{fontSize: 15}}>SIGN IN</Title>
+            <Title style={{fontSize: 15}}>SIGN UP</Title>
           </Body>
         </Header>
         <View>
@@ -172,16 +172,9 @@ class SecurityCode extends Component {
             </Item>
           </View>
         </View>
-        <View style={{marginTop: 80, alignSelf: 'center'}}>
-          <View>
-            <Text style={{fontWeight: 'yabold', color: '#3498db'}}>
-              LUPA SECURITY CODE ?
-            </Text>
-          </View>
-        </View>
       </Container>
     );
   }
 }
 
-export default SecurityCode;
+export default SecurityCodeRegister;

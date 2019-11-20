@@ -132,7 +132,7 @@ export default class Home extends Component {
                 <Button style={styles.btnContentView}>
                   <Icon name="mobile" color="#06B3BA" size={30} />
                 </Button>
-                <Text>Pasca Bayar</Text>
+                <Text style={{fontSize: 13, marginLeft: 1}}>Pasca Bayar</Text>
               </View>
             </TouchableOpacity>
           </View>

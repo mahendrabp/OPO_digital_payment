@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -6,11 +7,25 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  BackHandler,
 } from 'react-native';
-import {Form, Item, Input, Label, Body, ListItem, Button} from 'native-base';
+import {
+  Form,
+  Item,
+  Input,
+  Label,
+  Body,
+  ListItem,
+  Button,
+  Container,
+  Header,
+  Left,
+  Title,
+  Content,
+} from 'native-base';
 // import CheckBox from '@react-native-community/checkbox';
 import {bold} from 'ansi-colors';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Strong = props => <Text style={styles.boldFont}>{props.children}</Text>;
 const Blue = props => <Text style={styles.blueColor}>{props.children}</Text>;
 
@@ -99,72 +114,115 @@ class RegisterScreen extends Component {
     }
   };
 
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackPress,
+    );
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  goBack = () => {
+    this.props.navigation.navigate('LoginScreen');
+  };
+
+  goNext = () => {
+    this.props.navigation.navigate('OTPRegister');
+  };
+
+  handleBackPress = () => {
+    this.goBack();
+    return true;
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.wrapperHeader}>
-          <Text style={styles.fontSize}>
-            Terimakasih telah bergabung! Kami akan mengirim kode melalui{' '}
-            <Strong>SMS</Strong> dan <Strong>email</Strong> untuk proses
-            verifikasi registrasi
-          </Text>
-        </View>
-        <View style={styles.wrapperForm}>
-          <Form>
-            <Item error={this.state.isNameValid ? false : true} floatingLabel>
-              <Label style={styles.fontSize}>Nama Lengkap</Label>
-              <Input onChangeText={value => this.onChangeName(value)} />
-            </Item>
-            {!this.state.isNameValid && (
-              <Text style={styles.errorText}>
-                {this.state.invalidNameMessage}
-              </Text>
-            )}
+        <Header style={{backgroundColor: '#4E2A87'}}>
+          <Left>
+            <Button transparent onPress={() => this.goBack()}>
+              <Icon name="arrow-left" color="white" size={20} />
+            </Button>
+          </Left>
+          <Body>
+            <Title style={{fontSize: 15}}>SIGN UP</Title>
+          </Body>
+        </Header>
+        <ScrollView>
+          <View style={styles.wrapperHeader}>
+            <Text style={styles.fontSize}>
+              Terimakasih telah bergabung! Kami akan mengirim kode melalui{' '}
+              <Strong>SMS</Strong> dan <Strong>email</Strong> untuk proses
+              verifikasi registrasi
+            </Text>
+          </View>
+          <View style={styles.wrapperForm}>
+            <Form>
+              <Item error={this.state.isNameValid ? false : true} floatingLabel>
+                <Label style={styles.fontSize}>Nama Lengkap</Label>
+                <Input onChangeText={value => this.onChangeName(value)} />
+              </Item>
+              {!this.state.isNameValid && (
+                <Text style={styles.errorText}>
+                  {this.state.invalidNameMessage}
+                </Text>
+              )}
 
-            <Item floatingLabel error={this.state.isPhoneValid ? false : true}>
-              <Label style={styles.fontSize}>Nomor Ponsel</Label>
-              <Input onChangeText={value => this.onChangePhone(value)} />
-            </Item>
-            {!this.state.isPhoneValid && (
-              <Text style={styles.errorText}>
-                {this.state.invalidPhoneMessage}
-              </Text>
-            )}
+              <Item
+                floatingLabel
+                error={this.state.isPhoneValid ? false : true}>
+                <Label style={styles.fontSize}>Nomor Ponsel</Label>
+                <Input onChangeText={value => this.onChangePhone(value)} />
+              </Item>
+              {!this.state.isPhoneValid && (
+                <Text style={styles.errorText}>
+                  {this.state.invalidPhoneMessage}
+                </Text>
+              )}
 
-            <Item floatingLabel error={this.state.isEmailValid ? false : true}>
-              <Label style={styles.fontSize}>Email</Label>
-              <Input
-                onChangeText={value => this.onChangeEmail(value)}
-                value={this.state.email}
-              />
-            </Item>
-            {!this.state.isEmailValid && (
-              <Text style={styles.errorText}>
-                {this.state.invalidEmailMessage}
-              </Text>
-            )}
-            <Item floatingLabel last>
-              <Label style={styles.fontSize}>
-                Kode Promosi/Referesi: (optional)
-              </Label>
-              <Input />
-            </Item>
-            <View style={styles.agreementStyle}>
-              {/* <CheckBox checked={false} style={styles.blueColor} /> */}
-              <Text style={styles.agreementText}>
-                Saya setuju dengan{' '}
-                <Strong>
-                  <Blue>Syarat & Ketentuan</Blue>
-                </Strong>
-              </Text>
-            </View>
-          </Form>
-        </View>
-        <View style={styles.buttonWrapper}>
-          <Button block style={styles.buttonStyle}>
-            <Text style={styles.buttonTextStyle}>BERIKUTNYA</Text>
-          </Button>
-        </View>
+              <Item
+                floatingLabel
+                error={this.state.isEmailValid ? false : true}>
+                <Label style={styles.fontSize}>Email</Label>
+                <Input
+                  onChangeText={value => this.onChangeEmail(value)}
+                  value={this.state.email}
+                />
+              </Item>
+              {!this.state.isEmailValid && (
+                <Text style={styles.errorText}>
+                  {this.state.invalidEmailMessage}
+                </Text>
+              )}
+              <Item floatingLabel last>
+                <Label style={styles.fontSize}>
+                  Kode Promosi/Referesi: (optional)
+                </Label>
+                <Input />
+              </Item>
+              <View style={styles.agreementStyle}>
+                {/* <CheckBox checked={false} style={styles.blueColor} /> */}
+                <Text style={styles.agreementText}>
+                  Saya setuju dengan{' '}
+                  <Strong>
+                    <Blue>Syarat & Ketentuan</Blue>
+                  </Strong>
+                </Text>
+              </View>
+            </Form>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <Button
+              block
+              style={styles.buttonStyle}
+              onPress={() => this.goNext()}>
+              <Text style={styles.buttonTextStyle}>BERIKUTNYA</Text>
+            </Button>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -191,6 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20,
   },
   buttonStyle: {
     backgroundColor: '#4298AD',
