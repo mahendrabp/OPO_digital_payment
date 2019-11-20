@@ -18,12 +18,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
 class OTP extends Component {
   constructor(props) {
-    const otp = props.user.resultStep1.otp;
+    // const otp = props.user.resultStep1.otp;
     super(props);
     this.secondTextInput = null;
     this.state = {
       input: [],
-      otp: otp,
+      otp: props.user.resultStep1.otp,
+      phone: props.user.resultStep1.phone,
     };
   }
 
@@ -32,7 +33,7 @@ class OTP extends Component {
       'hardwareBackPress',
       this.handleBackPress,
     );
-    console.log(this.props.user);
+    // console.log(this.props.user);
   }
 
   componentWillUnmount() {
@@ -49,7 +50,6 @@ class OTP extends Component {
     if (this.state.otp === input) {
       console.log('true');
       this.props.navigation.navigate('SecurityCode');
-    } else {
     }
   };
 
@@ -98,8 +98,7 @@ class OTP extends Component {
               fontSize: 15,
               textAlign: 'center',
             }}>
-            {' '}
-            {this.props.user.resultStep1.phone}{' '}
+            {this.state.phone}
           </Text>
           <View style={{flexDirection: 'row', marginTop: 20}}>
             <View style={{flex: 1, alignItems: 'center'}}>

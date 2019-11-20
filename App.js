@@ -52,18 +52,19 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
-    SecurityCode: {
-      screen: SecurityCode,
-      navigationOptions: {
-        header: null,
-      },
-    },
     OTP: {
       screen: OTP,
       navigationOptions: {
         header: null,
       },
     },
+    SecurityCode: {
+      screen: SecurityCode,
+      navigationOptions: {
+        header: null,
+      },
+    },
+
     // RegisterScreen: {
     //   screen: RegisterScreen,
     //   navigationOptions: {
