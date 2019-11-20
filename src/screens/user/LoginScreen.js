@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Alert, Image} from 'react-native';
+import {StyleSheet, View, Text, Alert, Image, BackHandler} from 'react-native';
 import {Button, Form, Item, Label, Input, Icon} from 'native-base';
 
 class LoginScreen extends Component {
@@ -8,12 +8,55 @@ class LoginScreen extends Component {
     this.state = {
       isNumberValid: false,
       isButton: false,
+      number: '',
     };
   }
-  SignAlert = () => {
-    Alert.alert('Perhatian!', 'Nomor ponsel tidak valid');
+
+  onChangeNumber = value => {
+    this.setState({number: value});
+    console.log(value);
   };
 
+  goToHelp = () => {
+    this.props.navigation.navigate('HelpScreen');
+  };
+
+  goToOTP = () => {
+    this.props.navigation.navigate('OTP');
+  };
+
+  validateFieldNumber = bool => {
+    const {number} = this.state;
+    if (number === '') {
+      Alert.alert('Perhatian!', 'Masukan Nomor Ponsel');
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackPress,
+    );
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleBackPress = () => {
+    BackHandler.exitApp();
+    return true;
+  };
+
+  SignAlert = () => {
+    if (this.validateFieldNumber()) {
+      // Alert.alert('Perhatian!', 'Success Login');
+      this.goToOTP();
+    }
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -28,11 +71,17 @@ class LoginScreen extends Component {
                 style={styles.InputPonsel}
                 maxLength={15}
                 keyboardType={'numeric'}
+                onChangeText={this.onChangeNumber}
               />
             </Item>
           </Form>
         </View>
-        <Button block bordered light style={styles.buttonInputValid}>
+        <Button
+          block
+          bordered
+          light
+          style={styles.buttonInputValid}
+          onPress={() => this.SignAlert()}>
           <Text style={styles.ButtonTextValid}>SIGN IN</Text>
         </Button>
         <Text style={styles.atau}> ───────────── ATAU ───────────── </Text>
@@ -44,7 +93,9 @@ class LoginScreen extends Component {
             style={styles.iconHelp}
             source={require('../../../assets/img/needhelp.png')}
           />
-          <Text style={styles.HelpText}>Butuh bantuan?</Text>
+          <Text style={styles.HelpText} onPress={() => this.goToHelp()}>
+            Butuh bantuan?
+          </Text>
         </Button>
       </View>
     );
@@ -55,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#8e44ad',
+    backgroundColor: '#4E2A87',
   },
   iconNumber: {
     color: '#fff',
