@@ -15,13 +15,34 @@ import {
   Label,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+import {loginstep2} from '../../public/redux/action/users';
 class SecurityCode extends Component {
   constructor(props) {
+    const phone = props.user.resultStep1.phone;
     super(props);
     this.secondTextInput = null;
+    this.state = {
+      isPhoneValid: false,
+      isButton: false,
+      number: '',
+      phone,
+      securityCode: '',
+    };
   }
 
+  SignAlert = async () => {
+    const {phone, securityCode} = this.state;
+    if (this.validateFieldPhone()) {
+      // Alert.alert('Perhatian!', 'Success Login');
+      await this.props.dispatch(loginstep2({phone, securityCode}));
+      await this.props.navigation.navigate('Dashboard');
+      this.goToOTP();
+    }
+  };
+
   componentDidMount() {
+    console.log(this.state.phone);
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       this.handleBackPress,
@@ -30,6 +51,7 @@ class SecurityCode extends Component {
 
   componentWillUnmount() {
     this.backHandler.remove();
+    console.log(this.props.user);
   }
 
   goBack = () => {
@@ -176,4 +198,9 @@ class SecurityCode extends Component {
   }
 }
 
-export default SecurityCode;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(SecurityCode);
+// export default SecurityCode;

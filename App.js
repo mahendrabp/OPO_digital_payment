@@ -1,6 +1,7 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import {Provider} from 'react-redux';
 
 // import LoginScreen from './src/screens/user/LoginScreen';
 // import SplashScreen from './src/screens/user/SplashScreen';
@@ -8,18 +9,61 @@ import {createStackNavigator} from 'react-navigation-stack';
 // import RegisterScreen from './src/screens/user/RegisterScreen';
 import MenuTabs from './src/screens/menu';
 import MyHeader from './src/screens/header/Header';
+import LoginScreen from './src/screens/user/LoginScreen';
+import SplashScreen from './src/screens/user/SplashScreen';
+import IntroScreen from './src/screens/IntroScreen';
+import HelpScreen from './src/screens/user/HelpScreen';
+import OTP from './src/screens/user/OTP';
+import SecurityCode from './src/screens/user/SecurityCode';
+import store from './src/public/redux/store';
 
 function App() {
   return (
-    // <Provider store={store}>
-    //   <AppContainer />
-    // </Provider>
-    <AppContainer />
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+    // <AppContainer />
   );
 }
 
 const MainNavigator = createStackNavigator(
   {
+    SplashScreen: {
+      screen: SplashScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    IntroScreen: {
+      screen: IntroScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    HelpScreen: {
+      screen: HelpScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    LoginScreen: {
+      screen: LoginScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    SecurityCode: {
+      screen: SecurityCode,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OTP: {
+      screen: OTP,
+      navigationOptions: {
+        header: null,
+      },
+    },
     // RegisterScreen: {
     //   screen: RegisterScreen,
     //   navigationOptions: {
@@ -44,17 +88,10 @@ const MainNavigator = createStackNavigator(
     MenuTabs: {screen: MenuTabs},
   },
   {
-    initialRouteName: 'MenuTabs',
+    initialRouteName: 'SplashScreen',
     headerMode: 'none',
   },
 );
-
-// import LoginScreen from './src/screens/user/LoginScreen';
-// import SplashScreen from './src/screens/user/SplashScreen';
-// import IntroScreen from './src/screens/IntroScreen';
-// import HelpScreen from './src/screens/user/HelpScreen';
-// import OTP from './src/screens/user/OTP';
-// import SecurityCode from './src/screens/user/SecurityCode';
 
 // const StackNavigator = createStackNavigator({
 //   SplashScreen: {
