@@ -22,7 +22,7 @@ class RegisterScreen extends Component {
       email: '',
       name: '',
       phone: '',
-      referral: '',
+      referral: ' ',
 
       isEmailValid: true,
       isNameValid: true,
@@ -105,8 +105,8 @@ class RegisterScreen extends Component {
     if (!this.state.phone || !this.state.name) {
       return;
     } else {
-      await this.props.dispatch(signupstep1({email, name, phone, referral}));
-      await this.props.navigation.navigate('Dashboard');
+      await this.props.dispatch(signupstep1({name, phone, email, referral}));
+      // await this.props.navigation.navigate('Dashboard');
     }
   };
 
@@ -172,7 +172,10 @@ class RegisterScreen extends Component {
           </Form>
         </View>
         <View style={styles.buttonWrapper}>
-          <Button block style={styles.buttonStyle}>
+          <Button
+            block
+            style={styles.buttonStyle}
+            onPress={() => this.goSubmit()}>
             <Text style={styles.buttonTextStyle}>BERIKUTNYA</Text>
           </Button>
         </View>

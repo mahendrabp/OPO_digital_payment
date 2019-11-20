@@ -37,6 +37,9 @@ class LoginScreen extends Component {
   goToOTP = () => {
     this.props.navigation.navigate('OTP');
   };
+  goRegister = () => {
+    this.props.navigation.navigate('RegisterScreen');
+  };
 
   validateFieldPhone = bool => {
     const {phone} = this.state;
@@ -101,7 +104,10 @@ class LoginScreen extends Component {
           <Text style={styles.ButtonTextValid}>SIGN IN</Text>
         </Button>
         <Text style={styles.atau}> ───────────── ATAU ───────────── </Text>
-        <Button block style={styles.buttonInputJoin}>
+        <Button
+          block
+          style={styles.buttonInputJoin}
+          onPress={() => this.goRegister()}>
           <Text style={styles.ButtonText}>JOIN NOW</Text>
         </Button>
         <Button block transparent style={styles.buttonHelp}>

@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 const initialState = {
   resultStep1: [],
   resultStep2: [],
+  resultSignUpStep1: [],
+  resultSignUpStep2: [],
   authorization: '',
   isLoading: false,
   isError: false,
@@ -44,6 +46,22 @@ const user = (state = initialState, action) => {
         isError: false,
         resultStep2: action.payload.data.result,
         authorization: action.payload.data.result.authorization,
+      };
+
+    case 'SIGNUP_STEP1_PENDING':
+      return {
+        isLoading: true,
+      };
+    case 'SIGNUP_STEP1_REJECTED':
+      return {
+        isLoading: false,
+        isError: true,
+      };
+    case 'SIGNUP_STEP1_FULFILLED':
+      return {
+        isLoading: false,
+        isError: false,
+        resultSignUpStep1: action.payload.data.result,
       };
     default:
       return state;

@@ -16,6 +16,7 @@ import HelpScreen from './src/screens/user/HelpScreen';
 import OTP from './src/screens/user/OTP';
 import SecurityCode from './src/screens/user/SecurityCode';
 import store from './src/public/redux/store';
+import RegisterScreen from './src/screens/user/RegisterScreen';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
+
     LoginScreen: {
       screen: LoginScreen,
       navigationOptions: {
@@ -64,6 +66,14 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
+    // RegisterScreen: {
+    //   screen: RegisterScreen,
+    //   navigationOptions: {
+    //     headerStyle: {
+    //       backgroundColor: '#534090',
+    //     },
+    //   },
+    // },
 
     // RegisterScreen: {
     //   screen: RegisterScreen,
@@ -72,7 +82,7 @@ const MainNavigator = createStackNavigator(
     //       backgroundColor: '#534090',
     //     },
     //   },
-    // // },
+    // },
 
     // SplashScreen: {
     //   screen: SplashScreen,
