@@ -174,7 +174,7 @@ class SecurityCode extends Component {
         </View>
         <View style={{marginTop: 80, alignSelf: 'center'}}>
           <View>
-            <Text style={{fontWeight: 'yabold', color: '#3498db'}}>
+            <Text style={{fontWeight: 'bold', color: '#3498db'}}>
               LUPA SECURITY CODE ?
             </Text>
           </View>
