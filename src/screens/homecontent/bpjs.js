@@ -19,9 +19,9 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const tsel = require('../../../assets/img/telkomsel.png');
+const bpjs = require('../../../assets/img/bpjs.jpg');
 
-export default class PaketData extends Component {
+export default class BPJS extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,7 +77,7 @@ export default class PaketData extends Component {
                   fontSize: 20,
                   marginLeft: 15,
                 }}>
-                PAKET DATA
+                BPJS KESEHATAN
               </Title>
             </Body>
             <Right />
@@ -90,7 +90,7 @@ export default class PaketData extends Component {
             alignItems: 'center',
           }}>
           <Image
-            source={tsel}
+            source={bpjs}
             style={{
               height: 50,
               width: 50,
@@ -101,50 +101,38 @@ export default class PaketData extends Component {
               marginRight: 15,
             }}
           />
-          <Text style={{color: '#ffffff', fontSize: 20}}>Telkomsel</Text>
+          <Text style={{color: '#ffffff', fontSize: 20}}>BPJS Kesehatan</Text>
         </View>
         <View style={{marginTop: 10, marginLeft: 10, marginRight: 10}}>
           <Form>
             <Item floatingLabel style={{marginBottom: 20}}>
-              <Label>Nomor Ponsel</Label>
+              <Label>Nomor BPJS</Label>
               <Input style={{marginTop: 10}} />
             </Item>
             <Item stackedLabel style={{marginBottom: 20}}>
-              <Label>Jenis Paket</Label>
+              <Label>Sampai Dengan</Label>
               <Item picker>
                 <Picker
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
                   style={{width: undefined, marginLeft: -8}}
-                  placeholder="Pilih Paket"
+                  placeholder="Pilih Bulan"
                   placeholderStyle={{color: '#bfc6ea'}}
                   placeholderIconColor="#007aff"
                   selectedValue={this.state.selectedNominalPra}
                   onValueChange={this.onValueChangeNominalPra.bind(this)}>
-                  <Picker.Item
-                    label="Telkomsel Data 40MB-110MB (Sesuai zona terkait)"
-                    value="key0"
-                  />
-                  <Picker.Item
-                    label="Telkomsel Data 200MB-420MB (Sesuai zona terkait)"
-                    value="key1"
-                  />
-                  <Picker.Item
-                    label="Data 300MB-750MB + Videomax 1GB. Masa aktif 30 hari"
-                    value="key2"
-                  />
-                  <Picker.Item
-                    label="800MB-1.5 GB + 1GB midnight + 3GB Videomax. Masa aktif 30 hari"
-                    value="key3"
-                  />
-                  <Picker.Item
-                    label="Data 12GB kuota utama di semua jaringan dan zona"
-                    value="key4"
-                  />
-                  <Picker.Item
-                    label="Data 50GB kuota utama di semua jaringan dan zona"
-                    value="key4"
-                  />
+                  <Picker.Item label="November 2019" value="key0" />
+                  <Picker.Item label="Desember 2019" value="key1" />
+                  <Picker.Item label="Januari 2020" value="key2" />
+                  <Picker.Item label="Februari 2020" value="key3" />
+                  <Picker.Item label="Maret 2020" value="key4" />
+                  <Picker.Item label="April 2020" value="key5" />
+                  <Picker.Item label="Mei 2020" value="key6" />
+                  <Picker.Item label="Juni 2020" value="key7" />
+                  <Picker.Item label="Juli 2020" value="key8" />
+                  <Picker.Item label="Agustus 2020" value="key9" />
+                  <Picker.Item label="September 2020" value="key10" />
+                  <Picker.Item label="Oktober 2020" value="key11" />
                 </Picker>
               </Item>
             </Item>

@@ -152,7 +152,7 @@ export default class Home extends Component {
               <View style={styles.btnContent}>
                 <Button
                   style={styles.btnContentView}
-                  onPress={() => alert('Coming soon.')}>
+                  onPress={() => this.props.navigation.navigate('BPJS')}>
                   <Icon name="hands" color="#06B3BA" size={20} />
                 </Button>
                 <Text>BPJS</Text>

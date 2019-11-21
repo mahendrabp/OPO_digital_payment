@@ -5,6 +5,7 @@ import OPO from './opo';
 import Bank from './bank';
 import Pulsa from './pulsa';
 import PaketData from './paketdata';
+import BPJS from './bpjs';
 
 export default createStackNavigator(
   {
@@ -14,6 +15,7 @@ export default createStackNavigator(
     Transfer,
     Pulsa,
     PaketData,
+    BPJS,
   },
   {
     headerMode: 'none',
