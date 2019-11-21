@@ -141,42 +141,42 @@
 //         header: null,
 //       },
 //     },
-//     MenuTabs: {
-//       screen: MenuTabs,
-//       navigationOptions: {
-//         header: (
-//           <View style={{borderBottomColor: '#4E2A87', borderBottomWidth: 1}}>
-//             <Header style={{backgroundColor: '#4E2A87'}} transparent>
-//               <Left />
-//               <Body>
-//                 <Title
-//                   style={{
-//                     color: '#FCFCFE',
-//                     marginLeft: -50,
-//                     fontWeight: 'bold',
-//                     fontSize: 25,
-//                   }}>
-//                   OPO
-//                 </Title>
-//               </Body>
-//               <Right>
-//                 <TouchableOpacity>
-//                   <Button transparent>
-//                     <Icon name="bell" color="#B3A4C9" size={20} />
-//                   </Button>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity>
-//                   <Button transparent>
-//                     <Icon name="cog" color="#B3A4C9" size={25} />
-//                   </Button>
-//                 </TouchableOpacity>
-//               </Right>
-//             </Header>
-//           </View>
-//         ),
-//       },
+//   MenuTabs: {
+//     screen: MenuTabs,
+//     navigationOptions: {
+//       header: (
+//         <View style={{borderBottomColor: '#4E2A87', borderBottomWidth: 1}}>
+//           <Header style={{backgroundColor: '#4E2A87'}} transparent>
+//             <Left />
+//             <Body>
+//               <Title
+//                 style={{
+//                   color: '#FCFCFE',
+//                   marginLeft: -50,
+//                   fontWeight: 'bold',
+//                   fontSize: 25,
+//                 }}>
+//                 OPO
+//               </Title>
+//             </Body>
+//             <Right>
+//               <TouchableOpacity>
+//                 <Button transparent>
+//                   <Icon name="bell" color="#B3A4C9" size={20} />
+//                 </Button>
+//               </TouchableOpacity>
+//               <TouchableOpacity>
+//                 <Button transparent>
+//                   <Icon name="cog" color="#B3A4C9" size={25} />
+//                 </Button>
+//               </TouchableOpacity>
+//             </Right>
+//           </Header>
+//         </View>
+//       ),
 //     },
 //   },
+// },
 //   {
 //     initialRouteName: 'MenuTabs',
 //   },
@@ -201,7 +201,8 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {Provider} from 'react-redux';
 import store from './src/public/redux/store';
-
+import {Button, Header, Left, Body, Right, Title} from 'native-base';
+import {View} from 'react-native';
 import LoginScreen from './src/screens/user/LoginScreen';
 import SplashScreen from './src/screens/user/SplashScreen';
 import OTP from './src/screens/user/OTP';
@@ -212,6 +213,8 @@ import HelpScreen from './src/screens/user/HelpScreen';
 import IntroScreen from './src/screens/IntroScreen';
 import RegisterScreen from './src/screens/user/RegisterScreen';
 import MenuTabs from './src/screens/menu';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 function App() {
   return (
@@ -286,7 +289,41 @@ const MainNavigator = createStackNavigator(
       },
     },
 
-    MenuTabs: {screen: MenuTabs},
+    MenuTabs: {
+      screen: MenuTabs,
+      navigationOptions: {
+        header: (
+          <View style={{borderBottomColor: '#4E2A87', borderBottomWidth: 1}}>
+            <Header style={{backgroundColor: '#4E2A87'}} transparent>
+              <Left />
+              <Body>
+                <Title
+                  style={{
+                    color: '#FCFCFE',
+                    marginLeft: -50,
+                    fontWeight: 'bold',
+                    fontSize: 25,
+                  }}>
+                  OPO
+                </Title>
+              </Body>
+              <Right>
+                <TouchableOpacity>
+                  <Button transparent>
+                    <Icon name="bell" color="#B3A4C9" size={20} />
+                  </Button>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Button transparent>
+                    <Icon name="cog" color="#B3A4C9" size={25} />
+                  </Button>
+                </TouchableOpacity>
+              </Right>
+            </Header>
+          </View>
+        ),
+      },
+    },
   },
 
   {

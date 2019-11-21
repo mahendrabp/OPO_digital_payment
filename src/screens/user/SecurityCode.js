@@ -50,15 +50,18 @@ class SecurityCode extends Component {
 
     if (securityCode.length === 6) {
       this.props.dispatch(loginstep2({phone, securityCode}));
+      this.props.navigation.replace('MenuTabs');
+    } else {
+      Alert.alert('salah');
     }
   };
 
   componentDidMount() {
     // console.log(this.props.user.resultStep1);
-    this.backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      this.handleBackPress,
-    );
+    // this.backHandler = BackHandler.addEventListener(
+    //   'hardwareBackPress',
+    //   this.handleBackPress,
+    // );
   }
 
   componentWillUnmount() {

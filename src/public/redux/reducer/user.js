@@ -39,8 +39,8 @@ const user = (state = initialState, action) => {
         isError: true,
       };
     case 'LOGIN_STEP2_FULFILLED':
-      AsyncStorage.setItem('Authorization', action.payload.data.token);
-      console.log(AsyncStorage.getItem('Authorization'));
+      // AsyncStorage.setItem('Authorization', action.payload.data.token);
+      // console.log(AsyncStorage.getItem('Authorization'));
       return {
         isLoading: false,
         isError: false,
