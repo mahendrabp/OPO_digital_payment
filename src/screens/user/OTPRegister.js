@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {Text, View, BackHandler, TextInput} from 'react-native';
+import {connect} from 'react-redux'
 import {
   Container,
   Header,
@@ -15,10 +16,15 @@ import {
   Label,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-class OTP extends Component {
+class OTPRegister extends Component {
   constructor(props){
     super(props);
     this.secondTextInput = null;
+    this.state = {
+      input: [],
+      otp: props.user.resultSignUpStep1.otp,
+      phone: props.user.resultSignUpStep1.phone,
+    };
   }
 
   componentDidMount() {
@@ -37,8 +43,18 @@ class OTP extends Component {
   };
 
   goSecure = () => {
-    this.props.navigation.navigate('SecurityCode');
+    const input = this.state.input.toString().replace(/,/g, '');
+    console.log(this.state.otp);
+    if (this.state.otp === input) {
+      console.log('true');
+      this.props.navigation.navigate('SecurityCodeRegister');
+    }
   };
+
+  // goSecure = () => {
+  //   console.log(this.state.otp);
+  //   this.props.navigation.navigate('SecurityCode');
+  // };
 
   handleBackPress = () => {
     this.goBack();
@@ -85,8 +101,7 @@ class OTP extends Component {
               fontSize: 15,
               textAlign: 'center',
             }}>
-            {' '}
-            081293823938{' '}
+            {this.state.phone}
           </Text>
           <View style={{flexDirection: 'row', marginTop: 20}}>
             <View style={{flex: 1, alignItems: 'center'}}>
@@ -95,7 +110,15 @@ class OTP extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
-                  onChangeText={() => {
+
+                  ref={input => {
+                    this.firstTextInput = input;
+                  }}
+                  onChangeText={input => {
+                    console.log(input);
+                    this.setState({
+                      input: [...this.state.input, input],
+                    });
                     this.secondTextInput.focus();
                   }}
                   blurOnSubmit={false}
@@ -108,10 +131,15 @@ class OTP extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
+
                   ref={input => {
                     this.secondTextInput = input;
                   }}
-                  onChangeText={() => {
+                  onChangeText={input => {
+                    console.log(input);
+                    this.setState({
+                      input: [...this.state.input, input],
+                    });
                     this.thirdTextInput.focus();
                   }}
                   blurOnSubmit={false}
@@ -124,10 +152,15 @@ class OTP extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
+
                   ref={input => {
                     this.thirdTextInput = input;
                   }}
-                  onChangeText={() => {
+                  onChangeText={input => {
+                    console.log(input);
+                    this.setState({
+                      input: [...this.state.input, input],
+                    });
                     this.lastTextInput.focus();
                   }}
                   blurOnSubmit={false}
@@ -140,12 +173,27 @@ class OTP extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
+
                   ref={input => {
                     this.lastTextInput = input;
                   }}
-                  onChangeText={() => {
-                    this.goSecure()
+                  onChangeText={input => {
+                    console.log(input);
+                    this.setState(
+                      {
+                        input: [this.state.input.concat(input)],
+                      },
+                      function() {
+                        console.log(
+                          'but wrong here (previous number): ' +
+                            this.state.input,
+                        );
+                      },
+                    );
+                    // this.lastOne.focus();
                   }}
+
+                  onSubmitEditing={this.goSecure()}
                   blurOnSubmit={false}
                 />
               </Item>
@@ -173,4 +221,10 @@ class OTP extends Component {
   }
 }
 
-export default OTP;
+// export default OTP;
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(OTPRegister);

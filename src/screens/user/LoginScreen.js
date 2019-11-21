@@ -72,8 +72,9 @@ class LoginScreen extends Component {
     if (this.validateFieldPhone()) {
       // Alert.alert('Perhatian!', 'Success Login');
       await this.props.dispatch(loginstep1({phone}));
-      await this.props.navigation.navigate('Dashboard');
-      this.goToOTP();
+      // await this.props.navigation.navigate('Dashboard');
+      await this.props.navigation.navigate('OTP');
+      // this.goToOTP();
     }
   };
   render() {

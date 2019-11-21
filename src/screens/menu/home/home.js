@@ -1,17 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, Image, Dimensions} from 'react-native';
+import {Text, View, Image, Dimensions, BackHandler} from 'react-native';
 import styles from './style';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Carousel from 'react-native-snap-carousel';
+import {connect} from 'react-redux'
 
 const deviceWidth = Dimensions.get('window').width;
 
-export default class Home extends Component {
-  constructor() {
-    super();
+class Home extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       activeSlide: 0,
       carouselItems: [
@@ -30,6 +31,23 @@ export default class Home extends Component {
       ],
     };
   }
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackPress,
+    );
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleBackPress = () => {
+    BackHandler.exitApp();
+    return true;
+  };
+
   _renderItem({item}) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -48,13 +66,13 @@ export default class Home extends Component {
                   <Text style={{color: '#ffffff'}}>OPO CASH</Text>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#E5A534', fontSize: 13}}>Rp</Text>
-                    <Text style={{color: '#E5A534', fontSize: 25}}>17.450</Text>
+                    <Text style={{color: '#E5A534', fontSize: 25}}>{this.props.user.resultStep2.opo_cash}</Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#ffffff', fontSize: 13}}>
                       OPO POINTS{' '}
                     </Text>
-                    <Text style={{color: '#E5A534', fontSize: 13}}>17.450</Text>
+                    <Text style={{color: '#E5A534', fontSize: 13}}>{this.props.user.resultStep2.opo_point}</Text>
                   </View>
                 </View>
                 <View
@@ -186,3 +204,10 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(Home);
+// export default SecurityCode;

@@ -102,11 +102,12 @@ class RegisterScreen extends Component {
 
   goSubmit = async () => {
     const {email, name, phone, referral} = this.state;
-    if (!this.state.phone || !this.state.name) {
+    if (!this.state.phone || !this.state.name || !this.state.email) {
       return;
     } else {
       await this.props.dispatch(signupstep1({name, phone, email, referral}));
       // await this.props.navigation.navigate('Dashboard');
+      await this.props.navigation.navigate('OTPRegister');
     }
   };
 
