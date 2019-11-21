@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
@@ -16,7 +17,12 @@ export default createMaterialTopTabNavigator(
       navigationOptions: {
         title: 'Home',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="home" color={tintColor} size={20} textAlign="center" />
+          <Icon
+            name="home"
+            color={tintColor}
+            size={20}
+            style={{textAlign: 'center'}}
+          />
         ),
       },
     },
@@ -29,7 +35,7 @@ export default createMaterialTopTabNavigator(
             name="shopping-bag"
             color={tintColor}
             size={20}
-            textAlign="center"
+            style={{textAlign: 'center'}}
           />
         ),
       },
@@ -43,7 +49,7 @@ export default createMaterialTopTabNavigator(
             name="chart-line"
             color={tintColor}
             size={20}
-            textAlign="center"
+            style={{textAlign: 'center'}}
           />
         ),
       },
@@ -53,7 +59,12 @@ export default createMaterialTopTabNavigator(
       navigationOptions: {
         title: 'Wallet',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="wallet" color={tintColor} size={20} textAlign="center" />
+          <Icon
+            name="wallet"
+            color={tintColor}
+            size={20}
+            style={{textAlign: 'center'}}
+          />
         ),
       },
     },
@@ -62,7 +73,12 @@ export default createMaterialTopTabNavigator(
       navigationOptions: {
         title: 'History',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="signal" color={tintColor} size={20} textAlign="center" />
+          <Icon
+            name="signal"
+            color={tintColor}
+            size={20}
+            style={{textAlign: 'center'}}
+          />
         ),
       },
     },

@@ -3,6 +3,7 @@ import PLN from './pln';
 import Transfer from './transfer';
 import OPO from './opo';
 import Bank from './bank';
+import Pulsa from './pulsa';
 
 export default createStackNavigator(
   {
@@ -10,6 +11,7 @@ export default createStackNavigator(
     OPO,
     Bank,
     Transfer,
+    Pulsa,
   },
   {
     headerMode: 'none',
