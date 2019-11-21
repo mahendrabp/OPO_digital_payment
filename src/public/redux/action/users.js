@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // export action that get notes
-const URILogin = 'http://localhost:5200/api/v1/user/login/';
-const URISignUp = 'http://localhost:5200/api/v1/user/signup/';
+const URILogin = 'http://localhost:5050/api/v1/user/login/';
+const URISignUp = 'http://localhost:5050/api/v1/user/signup/';
 
 export const loginstep1 = data => {
   return {

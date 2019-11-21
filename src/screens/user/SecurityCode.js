@@ -43,25 +43,23 @@ class SecurityCode extends Component {
   //   await this.props.navigation.navigate('HelpScreen');
   // };
 
-  goSubmit = () => {
+  goSubmit = async () => {
     const {phone} = this.state;
     const securityCode = this.state.input.toString().replace(/,/g, '');
     // console.log(this.state.phone);
 
     if (securityCode.length === 6) {
-      this.props.dispatch(loginstep2({phone, securityCode}));
-      this.props.navigation.replace('MenuTabs');
-    } else {
-      Alert.alert('salah');
+      await this.props.dispatch(loginstep2({phone, securityCode}));
+      await this.props.navigation.navigate('MenuTabs');
     }
   };
 
   componentDidMount() {
     // console.log(this.props.user.resultStep1);
-    // this.backHandler = BackHandler.addEventListener(
-    //   'hardwareBackPress',
-    //   this.handleBackPress,
-    // );
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackPress,
+    );
   }
 
   componentWillUnmount() {

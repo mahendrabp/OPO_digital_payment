@@ -39,8 +39,11 @@ const user = (state = initialState, action) => {
         isError: true,
       };
     case 'LOGIN_STEP2_FULFILLED':
-      // AsyncStorage.setItem('Authorization', action.payload.data.token);
-      // console.log(AsyncStorage.getItem('Authorization'));
+      AsyncStorage.setItem(
+        'Authorization',
+        action.payload.data.result.authorization,
+      );
+      console.log(AsyncStorage.getItem('Authorization'));
       return {
         isLoading: false,
         isError: false,
@@ -63,6 +66,29 @@ const user = (state = initialState, action) => {
         isError: false,
         resultSignUpStep1: action.payload.data.result,
       };
+
+    case 'SIGNUP_STEP2_PENDING':
+      return {
+        isLoading: true,
+      };
+    case 'SIGNUP_STEP2_REJECTED':
+      return {
+        isLoading: false,
+        isError: true,
+      };
+    case 'SIGNUP_STEP2_FULFILLED':
+      AsyncStorage.setItem(
+        'Authorization',
+        action.payload.data.result.authorization,
+      );
+      console.log(AsyncStorage.getItem('Authorization'));
+      return {
+        isLoading: false,
+        isError: false,
+        resultStep2: action.payload.data.result,
+        authorization: action.payload.data.result.authorization,
+      };
+
     default:
       return state;
   }
