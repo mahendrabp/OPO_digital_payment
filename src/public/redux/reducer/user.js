@@ -5,6 +5,8 @@ const initialState = {
   resultStep2: [],
   resultSignUpStep1: [],
   resultSignUpStep2: [],
+  opo_cash: '',
+  opo_point: '',
   authorization: '',
   isLoading: false,
   isError: false,
@@ -48,7 +50,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         resultStep2: action.payload.data.result,
-        authorization: action.payload.data.result.authorization,
+        opo_cash: action.payload.data.result.opo_cash,
       };
 
     case 'SIGNUP_STEP1_PENDING':
@@ -86,7 +88,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         resultStep2: action.payload.data.result,
-        authorization: action.payload.data.result.authorization,
+        opo_cash: action.payload.data.result.opo_cash,
       };
 
     default:

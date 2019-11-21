@@ -6,7 +6,7 @@ import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Carousel from 'react-native-snap-carousel';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -66,13 +66,17 @@ class Home extends Component {
                   <Text style={{color: '#ffffff'}}>OPO CASH</Text>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#E5A534', fontSize: 13}}>Rp</Text>
-                    <Text style={{color: '#E5A534', fontSize: 25}}>{this.props.user.resultStep2.opo_cash}</Text>
+                    <Text style={{color: '#E5A534', fontSize: 25}}>
+                      {this.props.user.opo_cash}
+                    </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#ffffff', fontSize: 13}}>
                       OPO POINTS{' '}
                     </Text>
-                    <Text style={{color: '#E5A534', fontSize: 13}}>{this.props.user.resultStep2.opo_point}</Text>
+                    <Text style={{color: '#E5A534', fontSize: 13}}>
+                      {this.props.user.resultStep2.opo_point}
+                    </Text>
                   </View>
                 </View>
                 <View

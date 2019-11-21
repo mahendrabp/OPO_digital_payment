@@ -223,16 +223,29 @@ class SecurityCode extends Component {
                 ref={input => {
                   this.lastTextInput = input;
                 }}
-                onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
-                }}
+                // onChangeText={input => {
+                //   this.setState({
+                //     input: [...this.state.input, input],
+                //   });
+                // }}
+
                 // onChangeText={input => {
                 //   this.setState({input: [...this.state.input, input]});
                 //   this.goSubmit;
                 // }}
-                onSubmitEditing={this.goSubmit}
+                // onSubmitEditing={this.goSubmit}
+                onChangeText={input => {
+                  console.log(input);
+                  this.setState(
+                    {
+                      input: [...this.state.input, input],
+                    },
+                    function() {
+                      this.goSubmit();
+                    },
+                  );
+                  // this.lastOne.focus();
+                }}
               />
             </Item>
           </View>

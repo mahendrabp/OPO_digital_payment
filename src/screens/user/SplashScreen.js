@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 
 import {StyleSheet, View, Text} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class SplashScreen extends Component {
   componentDidMount() {
+    // if (AsyncStorage.getItem('Authorization')) {
+    //   this.props.navigation.replace('MenuTabs');
+    // } else {
     setTimeout(() => {
       this.props.navigation.navigate('IntroScreen');
     }, 4000);
+    // }
   }
 
   render() {

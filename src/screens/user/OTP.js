@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, BackHandler, TextInput} from 'react-native';
+import {Text, View, BackHandler, TextInput, Alert} from 'react-native';
 import {
   Container,
   Header,
@@ -48,9 +48,30 @@ class OTP extends Component {
     const input = this.state.input.toString().replace(/,/g, '');
     console.log(this.state.otp);
     if (this.state.otp === input) {
-      console.log('true');
       this.props.navigation.navigate('SecurityCode');
+    } else {
+      this.setState({
+        input: [],
+      });
+      Alert.alert('2FA salah');
     }
+    // if (this.state.otp !== input) {
+    //   Alert.alert('salah cuy');
+    //   this.setState({
+    //     input: [],
+    //   });
+    // } else {
+    //   this.props.navigation.navigate('SecurityCode');
+    // }
+    // if (this.state.otp !== input) {
+    //   Alert.alert('Perhatian!', '2FA tidak valid');
+    //   this.setState({
+    //     input: [],
+    //   });
+    //   return false;
+    // } else {
+    //   this.props.navigation.navigate('SecurityCode');
+    // }
   };
 
   handleBackPress = () => {
@@ -178,15 +199,12 @@ class OTP extends Component {
                         input: [this.state.input.concat(input)],
                       },
                       function() {
-                        console.log(
-                          'but wrong here (previous number): ' +
-                            this.state.input,
-                        );
+                        this.goSecure();
                       },
                     );
                     // this.lastOne.focus();
                   }}
-                  onSubmitEditing={this.goSecure()}
+                  // onSubmitEditing={this.goSecure()}
                   blurOnSubmit={false}
                 />
               </Item>

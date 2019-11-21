@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {Text, View, BackHandler, TextInput} from 'react-native';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 import {
   Container,
   Header,
@@ -17,7 +17,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 class OTPRegister extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.secondTextInput = null;
     this.state = {
@@ -110,7 +110,6 @@ class OTPRegister extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
-
                   ref={input => {
                     this.firstTextInput = input;
                   }}
@@ -131,7 +130,6 @@ class OTPRegister extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
-
                   ref={input => {
                     this.secondTextInput = input;
                   }}
@@ -152,7 +150,6 @@ class OTPRegister extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
-
                   ref={input => {
                     this.thirdTextInput = input;
                   }}
@@ -173,7 +170,6 @@ class OTPRegister extends Component {
                   style={{textAlign: 'center', fontSize: 20}}
                   maxLength={1}
                   keyboardType={'numeric'}
-
                   ref={input => {
                     this.lastTextInput = input;
                   }}
@@ -192,7 +188,6 @@ class OTPRegister extends Component {
                     );
                     // this.lastOne.focus();
                   }}
-
                   onSubmitEditing={this.goSecure()}
                   blurOnSubmit={false}
                 />

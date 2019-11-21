@@ -42,9 +42,14 @@ class LoginScreen extends Component {
   };
 
   validateFieldPhone = bool => {
+    let validationRegex = /^08[0-9]{9,}$/;
     const {phone} = this.state;
+    console.log(phone.length);
     if (phone === '') {
       Alert.alert('Perhatian!', 'Masukan Nomor Ponsel');
+      return false;
+    } else if (validationRegex.test(phone) === false) {
+      Alert.alert('Perhatian!', 'Nomer Ponsel tidak valid');
       return false;
     } else {
       return true;
