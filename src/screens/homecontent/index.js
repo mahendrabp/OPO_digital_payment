@@ -4,6 +4,7 @@ import Transfer from './transfer';
 import OPO from './opo';
 import Bank from './bank';
 import Pulsa from './pulsa';
+import PaketData from './paketdata';
 
 export default createStackNavigator(
   {
@@ -12,6 +13,7 @@ export default createStackNavigator(
     Bank,
     Transfer,
     Pulsa,
+    PaketData,
   },
   {
     headerMode: 'none',
