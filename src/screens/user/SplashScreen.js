@@ -12,6 +12,9 @@ export default class SplashScreen extends Component {
         this.props.navigation.navigate('IntroScreen');
       }, 4000);
     }
+    // setTimeout(() => {
+    //   this.props.navigation.navigate('IntroScreen');
+    // }, 4000);
   }
 
   render() {

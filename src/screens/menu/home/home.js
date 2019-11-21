@@ -7,6 +7,8 @@ import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Carousel from 'react-native-snap-carousel';
 import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import {getuser} from '../../../public/redux/action/users';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -14,6 +16,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: {},
       activeSlide: 0,
       carouselItems: [
         {
@@ -37,7 +40,18 @@ class Home extends Component {
       'hardwareBackPress',
       this.handleBackPress,
     );
+    this.getUser();
   }
+
+  getUser = async () => {
+    const auth = await AsyncStorage.getItem('Authorization');
+    const id = await AsyncStorage.getItem('idUser');
+    await this.props.dispatch(getuser(id, auth));
+    this.setState({user: this.props.user.getUser[0]});
+    // console.log(auth);
+    // console.log(id);
+    // console.log(this.props.user.getUser[0].opo_cash);
+  };
 
   componentWillUnmount() {
     this.backHandler.remove();
@@ -67,7 +81,9 @@ class Home extends Component {
                   <View style={{flexDirection: 'row'}}>
                     <Text style={{color: '#E5A534', fontSize: 13}}>Rp</Text>
                     <Text style={{color: '#E5A534', fontSize: 25}}>
-                      {this.props.user.opo_cash}
+                      {/* {this.props.user.getUser[0].opo_cash} */}
+                      {/* {this.props.user.getUser[0].opo_cash} */}
+                      {this.state.user.opo_cash}
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
@@ -75,7 +91,8 @@ class Home extends Component {
                       OPO POINTS{' '}
                     </Text>
                     <Text style={{color: '#E5A534', fontSize: 13}}>
-                      {this.props.user.resultStep2.opo_point}
+                      {/* {this.props.user.resultStep2.opo_point} */}
+                      {this.state.user.opo_point}
                     </Text>
                   </View>
                 </View>

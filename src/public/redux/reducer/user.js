@@ -5,6 +5,7 @@ const initialState = {
   resultStep2: [],
   resultSignUpStep1: [],
   resultSignUpStep2: [],
+  getUser: {},
   opo_cash: '',
   opo_point: '',
   authorization: '',
@@ -15,6 +16,22 @@ const initialState = {
 // create a reducer for getting network from RESTful API
 const user = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_USER_PENDING':
+      return {
+        isLoading: true,
+      };
+    case 'GET_USER_REJECTED':
+      return {
+        isLoading: false,
+        isError: true,
+      };
+    case 'GET_USER_FULFILLED':
+      return {
+        isLoading: false,
+        isError: false,
+        getUser: action.payload.data.result,
+      };
+
     case 'LOGIN_STEP1_PENDING':
       return {
         isLoading: true,
@@ -45,6 +62,7 @@ const user = (state = initialState, action) => {
         'Authorization',
         action.payload.data.result.authorization,
       );
+      AsyncStorage.setItem('idUser', action.payload.data.result.user_id);
       console.log(AsyncStorage.getItem('Authorization'));
       return {
         isLoading: false,
@@ -83,6 +101,7 @@ const user = (state = initialState, action) => {
         'Authorization',
         action.payload.data.result.authorization,
       );
+      AsyncStorage.setItem('idUser', action.payload.data.result.id);
       console.log(AsyncStorage.getItem('Authorization'));
       return {
         isLoading: false,

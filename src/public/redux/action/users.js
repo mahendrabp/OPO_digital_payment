@@ -2,8 +2,16 @@
 import axios from 'axios';
 
 // export action that get notes
+const URIGetUser = 'http://localhost:5200/api/v1/user/get/';
 const URILogin = 'http://localhost:5200/api/v1/user/login/';
 const URISignUp = 'http://localhost:5200/api/v1/user/signup/';
+
+export const getuser = (id, auth) => {
+  return {
+    type: 'GET_USER',
+    payload: axios.get(URIGetUser + id, {headers: {authorization: auth}}),
+  };
+};
 
 export const loginstep1 = data => {
   return {
