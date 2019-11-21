@@ -212,6 +212,7 @@ import SecurityCodeRegister from './src/screens/user/SecurityCodeRegister';
 import HelpScreen from './src/screens/user/HelpScreen';
 import IntroScreen from './src/screens/IntroScreen';
 import RegisterScreen from './src/screens/user/RegisterScreen';
+import SettingScreen from './src/screens/SettingScreen';
 import MenuTabs from './src/screens/menu';
 import HomeContent from './src/screens/homecontent';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -404,10 +405,18 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
+    SettingScreen: {
+      screen: SettingScreen,
+      navigationOptions: {
+        headerStyle: {
+          marginTop: 25,
+        },
+      },
+    },
     MenuTabs: {
       screen: MenuTabs,
       navigationOptions: {
-        header: (
+        header: props => (
           <View style={{borderBottomColor: '#4E2A87', borderBottomWidth: 1}}>
             <Header style={{backgroundColor: '#4E2A87'}} transparent>
               <Left />
@@ -429,7 +438,9 @@ const MainNavigator = createStackNavigator(
                   </Button>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Button transparent>
+                  <Button
+                    transparent
+                    onPress={() => props.navigation.navigate('SettingScreen')}>
                     <Icon name="cog" color="#B3A4C9" size={25} />
                   </Button>
                 </TouchableOpacity>
