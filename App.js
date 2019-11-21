@@ -213,6 +213,7 @@ import HelpScreen from './src/screens/user/HelpScreen';
 import IntroScreen from './src/screens/IntroScreen';
 import RegisterScreen from './src/screens/user/RegisterScreen';
 import SettingScreen from './src/screens/SettingScreen';
+import NotificationScreen from './src/screens/NotificationScreen';
 import MenuTabs from './src/screens/menu';
 import HomeContent from './src/screens/homecontent';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -413,6 +414,14 @@ const MainNavigator = createStackNavigator(
         },
       },
     },
+    NotificationScreen: {
+      screen: NotificationScreen,
+      navigationOptions: {
+        headerStyle: {
+          marginTop: 25,
+        },
+      },
+    },
     MenuTabs: {
       screen: MenuTabs,
       navigationOptions: {
@@ -433,7 +442,11 @@ const MainNavigator = createStackNavigator(
               </Body>
               <Right>
                 <TouchableOpacity>
-                  <Button transparent>
+                  <Button
+                    transparent
+                    onPress={() =>
+                      props.navigation.navigate('NotificationScreen')
+                    }>
                     <Icon name="bell" color="#B3A4C9" size={20} />
                   </Button>
                 </TouchableOpacity>
