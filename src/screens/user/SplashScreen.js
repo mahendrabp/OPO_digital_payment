@@ -5,7 +5,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default class SplashScreen extends Component {
   componentDidMount() {
-    if (AsyncStorage.getItem('Authorization')) {
+    if (
+      AsyncStorage.getItem('Authorization') !== null &&
+      AsyncStorage.getItem('Authorization') !== ''
+    ) {
       this.props.navigation.replace('MenuTabs');
     } else {
       setTimeout(() => {

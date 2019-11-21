@@ -371,18 +371,19 @@ const MainNavigator = createStackNavigator(
         },
       },
     },
-    SecurityCode: {
-      screen: SecurityCode,
-      navigationOptions: {
-        header: null,
-      },
-    },
     OTP: {
       screen: OTP,
       navigationOptions: {
         header: null,
       },
     },
+    SecurityCode: {
+      screen: SecurityCode,
+      navigationOptions: {
+        header: null,
+      },
+    },
+
     SecurityCodeRegister: {
       screen: SecurityCodeRegister,
       navigationOptions: {
