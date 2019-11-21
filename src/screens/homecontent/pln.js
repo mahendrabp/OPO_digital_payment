@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Dimensions} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
 import {
@@ -21,6 +21,9 @@ import {
   Picker,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 const imgPLN = require('../../../assets/img/PLN.jpg');
 
@@ -60,7 +63,7 @@ export default class PLN extends Component {
                   name="arrow-left"
                   color="#ffffff"
                   size={20}
-                  onPress={() => this.props.navigation.goBack()}
+                  onPress={() => this.props.navigation.navigate('MenuTabs')}
                 />
               </Button>
             </Left>
@@ -106,8 +109,7 @@ export default class PLN extends Component {
             }}>
             <Tab
               heading={
-                <TabHeading
-                  style={{backgroundColor: '#ffffff', borderBottomWidth: 0}}>
+                <TabHeading style={{backgroundColor: '#ffffff'}}>
                   <Text>Prabayar</Text>
                 </TabHeading>
               }>
@@ -216,7 +218,9 @@ export default class PLN extends Component {
                     onPress={() => alert('Coming soon.')}
                     block
                     rounded
-                    style={{backgroundColor: '#06B3BA'}}>
+                    style={{
+                      backgroundColor: '#06B3BA',
+                    }}>
                     <Text style={{color: '#ffffff', fontSize: 20}}>
                       Berikutnya
                     </Text>
