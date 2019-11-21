@@ -1,8 +1,11 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, Image, Dimensions, BackHandler} from 'react-native';
+
+import {Text, View, Image, Dimensions, TouchableOpacity} from 'react-native';
+
 import styles from './style';
-import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Carousel from 'react-native-snap-carousel';
@@ -109,7 +112,8 @@ class Home extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Button
-                      style={{backgroundColor: '#06B3BA', borderRadius: 5}}>
+                      style={{backgroundColor: '#06B3BA', borderRadius: 5}}
+                      onPress={() => this.props.navigation.navigate('TopUp')}>
                       <Text style={styles.txtTopUp}>TOP UP</Text>
                     </Button>
                   </TouchableOpacity>
@@ -118,19 +122,20 @@ class Home extends Component {
             </View>
           </View>
           <View style={styles.action}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Transfer')}>
               <View style={styles.btnActionFirst}>
                 <Icon name="arrow-alt-circle-right" color="#4E2A87" size={30} />
                 <Text>Transfer</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => alert('Coming soon.')}>
               <View style={styles.btnAction}>
                 <Icon name="qrcode" color="#4E2A87" size={30} />
                 <Text>Scan</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => alert('Coming soon.')}>
               <View style={styles.btnAction}>
                 <Icon name="user-circle" color="#4E2A87" size={30} />
                 <Text>OPO ID</Text>
@@ -152,23 +157,31 @@ class Home extends Component {
             </TouchableOpacity>
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="mobile-alt" color="#06B3BA" size={25} />
                 </Button>
                 <Text>Pulsa</Text>
               </View>
             </TouchableOpacity>
+
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="wifi" color="#06B3BA" size={20} />
                 </Button>
                 <Text>Paket Data</Text>
               </View>
             </TouchableOpacity>
+
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="mobile" color="#06B3BA" size={30} />
                 </Button>
                 <Text style={{fontSize: 13, marginLeft: 1}}>Pasca Bayar</Text>
@@ -178,31 +191,42 @@ class Home extends Component {
           <View style={styles.content}>
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="hands" color="#06B3BA" size={20} />
                 </Button>
                 <Text>BPJS</Text>
               </View>
             </TouchableOpacity>
+
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="satellite-dish" color="#06B3BA" size={25} />
                 </Button>
                 <Text>TV Kabel</Text>
               </View>
             </TouchableOpacity>
+
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="stream" color="#06B3BA" size={25} />
                 </Button>
                 <Text>Streaming</Text>
               </View>
             </TouchableOpacity>
+
             <TouchableOpacity>
               <View style={styles.btnContent}>
-                <Button style={styles.btnContentView}>
+                <Button
+                  style={styles.btnContentView}
+                  onPress={() => alert('Coming soon.')}>
                   <Icon name="ellipsis-h" color="#06B3BA" size={25} />
                 </Button>
                 <Text>Lainnya</Text>

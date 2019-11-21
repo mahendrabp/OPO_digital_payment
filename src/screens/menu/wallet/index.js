@@ -5,6 +5,7 @@ import {Card, CardItem, Body} from 'native-base';
 
 import styles from './style';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+import {connect} from 'react-redux';
 
 export default class Wallet extends Component {
   render() {
