@@ -166,7 +166,7 @@ class Home extends Component {
               <View style={styles.btnContent}>
                 <Button
                   style={styles.btnContentView}
-                  onPress={() => alert('Coming soon.')}>
+                  onPress={() => this.props.navigation.navigate('Pulsa')}>
                   <Icon name="mobile-alt" color="#06B3BA" size={25} />
                 </Button>
                 <Text>Pulsa</Text>
@@ -177,7 +177,7 @@ class Home extends Component {
               <View style={styles.btnContent}>
                 <Button
                   style={styles.btnContentView}
-                  onPress={() => alert('Coming soon.')}>
+                  onPress={() => this.props.navigation.navigate('PaketData')}>
                   <Icon name="wifi" color="#06B3BA" size={20} />
                 </Button>
                 <Text>Paket Data</Text>
@@ -200,7 +200,7 @@ class Home extends Component {
               <View style={styles.btnContent}>
                 <Button
                   style={styles.btnContentView}
-                  onPress={() => alert('Coming soon.')}>
+                  onPress={() => this.props.navigation.navigate('BPJS')}>
                   <Icon name="hands" color="#06B3BA" size={20} />
                 </Button>
                 <Text>BPJS</Text>

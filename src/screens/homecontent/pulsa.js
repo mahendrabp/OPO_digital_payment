@@ -25,9 +25,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
-const imgPLN = require('../../../assets/img/PLN.jpg');
+const tsel = require('../../../assets/img/telkomsel.png');
 
-export default class PLN extends Component {
+export default class Pulsa extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +89,7 @@ export default class PLN extends Component {
                   fontSize: 20,
                   marginLeft: 15,
                 }}>
-                PLN
+                PULSA
               </Title>
             </Body>
             <Right />
@@ -102,7 +102,7 @@ export default class PLN extends Component {
             alignItems: 'center',
           }}>
           <Image
-            source={imgPLN}
+            source={tsel}
             style={{
               height: 50,
               width: 50,
@@ -113,7 +113,7 @@ export default class PLN extends Component {
               marginRight: 15,
             }}
           />
-          <Text style={{color: '#ffffff', fontSize: 25}}>PLN</Text>
+          <Text style={{color: '#ffffff', fontSize: 20}}>Telkomsel</Text>
         </View>
         <View>
           <Tabs
@@ -131,7 +131,7 @@ export default class PLN extends Component {
               <View style={{marginTop: 10, marginLeft: 10, marginRight: 10}}>
                 <Form>
                   <Item floatingLabel style={{marginBottom: 20}}>
-                    <Label>Nomor Meter</Label>
+                    <Label>Nomor Ponsel</Label>
                     <Input style={{marginTop: 10}} />
                   </Item>
                   <Item stackedLabel style={{marginBottom: 20}}>
@@ -201,7 +201,7 @@ export default class PLN extends Component {
               <View style={{marginTop: 10, marginLeft: 10, marginRight: 10}}>
                 <Form>
                   <Item floatingLabel style={{marginBottom: 20}}>
-                    <Label>ID Pelanggan</Label>
+                    <Label>Nomor Ponsel</Label>
                     <Input style={{marginTop: 10}} />
                   </Item>
                   <Item stackedLabel>
