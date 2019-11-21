@@ -34,22 +34,22 @@ class PLN extends Component {
     super(props);
     this.state = {
       selectedNominalPra: '',
-      selectedMethodPra: '',
+      // opoType: '',
       selectedMethodPasca: '',
-      nominal: '1000',
+      nominal: 0,
       merchantId: '1',
-      opoType: 'opo_cash',
+      opoType: '',
       transactionType: 'prabayar',
     };
   }
   onValueChangeNominalPra(value) {
     this.setState({
-      selectedNominalPra: value,
+      nominal: value,
     });
   }
   onValueChangeMethodPra(value) {
     this.setState({
-      selectedMethodPra: value,
+      opoType: value,
     });
   }
   componentDidMount() {
@@ -57,31 +57,73 @@ class PLN extends Component {
   }
   onValueChangeMethodPasca(value) {
     this.setState({
-      selectedMethodPasca: value,
+      opoType: value,
     });
   }
 
   addPpobPLN() {
     const {nominal, merchantId, opoType, transactionType} = this.state;
-    const data = {nominal, merchantId, opoType, transactionType};
-    this.setState({
-      isLoading: true,
-    });
+    console.log(nominal);
+    console.log(merchantId);
+    console.log(opoType);
+    console.log(transactionType);
 
-    axios({
-      method: 'post',
-      url: `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
-      data: data,
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-      },
-    })
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+    axios
+      .post(
+        `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
+        {
+          // eslint-disable-next-line radix
+          nominal: parseInt(nominal),
+          merchantId: merchantId,
+          opoType: opoType,
+          transactionType: transactionType,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // const dataForm = new FormData();
+    // dataForm.append('nominal', nominal);
+    // dataForm.append('merchantId', merchantId);
+    // dataForm.append('opoType', opoType);
+    // dataForm.append('transactionType', transactionType);
+
     // axios.post(
-    //   `http://localhost:5200/api/v1/balance/ppob/out/d8502c57-07f4-463a-bb0d-261047b4db3c`,
-    //   data,
+    //   `http://127.0.0.1:5200/api/v1/balance/ppob/out/d8502c57-07f4-463a-bb0d-261047b4db3c`,
+    //   dataForm,
     // );
+    // axios.post(
+    //   `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
+    //   {
+    //     data,
+    //     //other data key value pairs
+    //   },
+    //   {
+    //     headers: {
+    //       'content-Type': 'application/json',
+    //     },
+    //   },
+    // );
+
+    // axios({
+    //   method: 'post',
+    //   url: `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
+    //   data: data,
+    //   headers: {
+    //     'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    //   },
+    // })
+    //   .then(response => console.log(response))
+    //   .catch();
   }
   render() {
     return (
@@ -161,15 +203,16 @@ class PLN extends Component {
                         placeholder="Pilih Nominal"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedNominalPra}
+                        selectedValue={this.state.nominal}
                         onValueChange={this.onValueChangeNominalPra.bind(this)}>
-                        <Picker.Item label="Rp20.000" value="10000" />
-                        <Picker.Item label="Rp50.000" value="20000" />
+                        <Picker.Item label="Rp100" value="100" />
+                        <Picker.Item label="Rp20.000" value="20000" />
+                        <Picker.Item label="Rp50.000" value="50000" />
                         <Picker.Item label="Rp100.000" value="100000" />
-                        <Picker.Item label="Rp200.000" value="key3" />
-                        <Picker.Item label="Rp500.000" value="key4" />
-                        <Picker.Item label="Rp1.000.000" value="key4" />
-                        <Picker.Item label="Rp5.000.000" value="key4" />
+                        <Picker.Item label="Rp200.000" value="200000" />
+                        <Picker.Item label="Rp500.000" value="500000" />
+                        <Picker.Item label="Rp1.000.000" value="1000000" />
+                        <Picker.Item label="Rp5.000.000" value="5000000" />
                       </Picker>
                     </Item>
                   </Item>
@@ -183,7 +226,7 @@ class PLN extends Component {
                         placeholder="Pilih Metode Pembayaran"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedMethodPra}
+                        selectedValue={this.state.opoType}
                         onValueChange={this.onValueChangeMethodPra.bind(this)}>
                         <Picker.Item label="OPO Cash" value="opo_cash" />
                         <Picker.Item label="OPO Points" value="opo_point" />
@@ -233,12 +276,12 @@ class PLN extends Component {
                         placeholder="Pilih Metode Pembayaran"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedMethodPasca}
+                        selectedValue={this.state.opoType}
                         onValueChange={this.onValueChangeMethodPasca.bind(
                           this,
                         )}>
-                        <Picker.Item label="OPO Cash" value="key0" />
-                        <Picker.Item label="OPO Points" value="key1" />
+                        <Picker.Item label="OPO Cash" value="opo_cash" />
+                        <Picker.Item label="OPO Points" value="opo_point" />
                       </Picker>
                     </Item>
                   </Item>

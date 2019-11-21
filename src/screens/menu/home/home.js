@@ -19,6 +19,7 @@ import Carousel from 'react-native-snap-carousel';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import {getuser} from '../../../public/redux/action/users';
+import {NavigationEvents} from 'react-navigation';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -82,6 +83,7 @@ class Home extends Component {
   render() {
     return (
       <View>
+        <NavigationEvents onDidFocus={() => this.getUser()} />
         <View>
           <View style={styles.viewBalance}>
             <View style={styles.balance}>
