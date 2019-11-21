@@ -19,24 +19,65 @@ import {
   CardItem,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
+import {getuser} from '../../public/redux/action/users';
+import {transfer} from '../../public/redux/action/users';
 
-export default class OPO extends Component {
+class OPO extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      user: {},
+      Saldo: '',
+      phone: '',
+      nominal: '',
+    }
+  }
+
   componentDidMount() {
-    this.backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      this.handleBackPress,
-    );
+    this.getUser()
+    // this.setState({user: this.props.user.getUser[0]});
+    console.log('=================================================')
+    // console.log(auth);
+    // console.log(id);
+    // console.log(this.props.user.getUser[0].id);
+    // console.log(this.state.user)
   }
 
-  componentWillUnmount() {
-    this.backHandler.remove();
-  }
+  getUser = async () => {
+    const auth = await AsyncStorage.getItem('Authorization');
+    const id = await AsyncStorage.getItem('idUser');
+    await this.props.dispatch(getuser(id, auth));
+    this.setState({user: this.props.user.getUser[0], saldo:this.props.user.getUser[0].opo_cash});
+    // console.log('=================================================')
+    // console.log(auth);
+    // console.log(id);
+    // console.log(this.props.user.getUser[0].opo_cash);
+  };
 
   handleBackPress = () => {
     this.props.navigation.navigate('Transfer');
     return true;
   };
+
+  handleSubmit = async () => {
+    if (this.state.phone !== '' && this.state.nominal !== '') {
+      await this.props.dispatch(transfer(this.state.phone, this.state.nominal, this.state.user.user_id));
+      // console.log(this.state.saldo)
+      // console.log(this.props.user.transfer)
+      this.setState({saldo: parseInt(this.state.saldo) - parseInt(this.state.nominal)});
+    }
+    this.setState({
+      phone:'',
+      nominal:'',
+    })
+  }
+
   render() {
+    // console.log('===================')
+    console.log(this.state.phone)
+    console.log(this.state.nominal)
     return (
       <ScrollView>
         <View
@@ -74,8 +115,8 @@ export default class OPO extends Component {
         <View style={{margin: 20}}>
           <Form>
             <Item floatingLabel style={{marginBottom: 20}}>
-              <Label>Masukkan nama atau nomor ponsel</Label>
-              <Input style={{marginTop: 10}} />
+              <Label>Masukkan nomor ponsel</Label>
+              <Input style={{marginTop: 10}} keyboardType={'numeric'} value={this.state.phone} onChangeText={(val)=>{this.setState({phone:val})}}/>
             </Item>
             <View>
               <Text style={{marginLeft: 12, color: '#7A848B', marginTop: 15}}>
@@ -105,7 +146,7 @@ export default class OPO extends Component {
                       <Text style={{fontWeight: 'bold'}}>OPO Cash</Text>
                       <Text>
                         Saldo{' '}
-                        <Text style={{fontWeight: 'bold'}}>Rp1.000.000</Text>
+                        <Text style={{fontWeight: 'bold'}}>Rp{this.state.saldo}</Text>
                       </Text>
                     </View>
                   </View>
@@ -122,7 +163,7 @@ export default class OPO extends Component {
               }}>
               <Item stackedLabel>
                 <Label>Nominal Transfer</Label>
-                <Input placeholder="Rp0" style={{fontSize: 25}} />
+                <Input keyboardType={'numeric'} placeholder="Rp0" style={{fontSize: 25}} value={this.state.nominal} onChangeText={(val)=>{this.setState({nominal:val})}}/>
               </Item>
             </View>
             <View>
@@ -134,7 +175,7 @@ export default class OPO extends Component {
             <TouchableOpacity>
               <View style={{marginTop: 30}}>
                 <Button
-                  onPress={() => alert('Coming soon.')}
+                  onPress={() => this.handleSubmit()}
                   block
                   rounded
                   style={{
@@ -152,3 +193,9 @@ export default class OPO extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(OPO);

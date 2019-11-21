@@ -2,9 +2,23 @@
 import axios from 'axios';
 
 // export action that get notes
-const URIGetUser = 'http://localhost:5200/api/v1/user/get/';
-const URILogin = 'http://localhost:5200/api/v1/user/login/';
-const URISignUp = 'http://localhost:5200/api/v1/user/signup/';
+const URIGetUser = 'http://localhost:5050/api/v1/user/get/';
+const URILogin = 'http://localhost:5050/api/v1/user/login/';
+const URISignUp = 'http://localhost:5050/api/v1/user/signup/';
+const URITransfer = 'http://localhost:5050/api/v1/balance/transfer/';
+
+export const transfer = (phone, nominal, id) => {
+  const data = {
+    phoneTo: phone,
+    nominal,
+  }
+  console.log(data)
+  console.log(id)
+  return {
+    type: 'TRANSFER',
+    payload: axios.patch(URITransfer + id, data)
+  }
+}
 
 export const getuser = (id, auth) => {
   return {
