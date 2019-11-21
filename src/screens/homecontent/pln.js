@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, Image, Dimensions, BackHandler} from 'react-native';
+import {Text, View, Image, Dimensions, BackHandler, Alert} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
 import {
@@ -21,36 +21,58 @@ import {
   Picker,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {connect} from 'react-redux';
+import axios from 'axios';
+import {NavigationEvents} from 'react-navigation';
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 const imgPLN = require('../../../assets/img/PLN.jpg');
 
-export default class PLN extends Component {
+class PLN extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedNominalPra: '',
-      selectedMethodPra: '',
+      // opoType: '',
       selectedMethodPasca: '',
+      nominal: 0,
+      merchantId: '1',
+      opoType: '',
+      transactionType: 'prabayar',
+      isDisable: true,
+      saldo: this.props.user.getUser[0].opo_cash,
     };
   }
   onValueChangeNominalPra(value) {
-    this.setState({
-      selectedNominalPra: value,
-    });
+    if (value === 0) {
+      this.setState({
+        isDisable: true,
+      });
+    } else {
+      this.setState({
+        nominal: value,
+        isDisable: false,
+      });
+    }
+
+    console.log(this.state.nominal);
   }
   onValueChangeMethodPra(value) {
     this.setState({
-      selectedMethodPra: value,
+      opoType: value,
     });
   }
+  // componentDidMount() {
+  //   console.log(this.props.user.getUser[0].user_id);
+  // }
   onValueChangeMethodPasca(value) {
     this.setState({
-      selectedMethodPasca: value,
+      opoType: value,
     });
   }
+
   componentDidMount() {
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -66,6 +88,46 @@ export default class PLN extends Component {
     this.props.navigation.navigate('MenuTabs');
     return true;
   };
+
+  addPpobPLN() {
+    const {nominal, merchantId, opoType, transactionType} = this.state;
+    console.log(nominal);
+    console.log(merchantId);
+    console.log(opoType);
+    console.log(transactionType);
+
+    axios
+      .post(
+        `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
+        {
+          // eslint-disable-next-line radix
+          nominal: parseInt(nominal),
+          merchantId: merchantId,
+          opoType: opoType,
+          transactionType: transactionType,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(response => {
+        console.log(response);
+        this.alertSuccess();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  alertSuccess() {
+    Alert.alert(`pembayaran PLN sebesar ${this.state.nominal} Telah berhasil`);
+    this.setState({
+      saldo: this.props.user.getUser[0].opo_cash - this.state.nominal,
+    });
+  }
+
   render() {
     return (
       <ScrollView>
@@ -144,15 +206,16 @@ export default class PLN extends Component {
                         placeholder="Pilih Nominal"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedNominalPra}
+                        selectedValue={this.state.nominal}
                         onValueChange={this.onValueChangeNominalPra.bind(this)}>
-                        <Picker.Item label="Rp20.000" value="key0" />
-                        <Picker.Item label="Rp50.000" value="key1" />
-                        <Picker.Item label="Rp100.000" value="key2" />
-                        <Picker.Item label="Rp200.000" value="key3" />
-                        <Picker.Item label="Rp500.000" value="key4" />
-                        <Picker.Item label="Rp1.000.000" value="key4" />
-                        <Picker.Item label="Rp5.000.000" value="key4" />
+                        <Picker.Item label="Pilih Nominal" value="0" />
+                        <Picker.Item label="Rp20.000" value="20000" />
+                        <Picker.Item label="Rp50.000" value="50000" />
+                        <Picker.Item label="Rp100.000" value="100000" />
+                        <Picker.Item label="Rp200.000" value="200000" />
+                        <Picker.Item label="Rp500.000" value="500000" />
+                        <Picker.Item label="Rp1.000.000" value="1000000" />
+                        <Picker.Item label="Rp5.000.000" value="5000000" />
                       </Picker>
                     </Item>
                   </Item>
@@ -166,21 +229,29 @@ export default class PLN extends Component {
                         placeholder="Pilih Metode Pembayaran"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedMethodPra}
+                        selectedValue={this.state.opoType}
                         onValueChange={this.onValueChangeMethodPra.bind(this)}>
-                        <Picker.Item label="OPO Cash" value="key0" />
-                        <Picker.Item label="OPO Points" value="key1" />
+                        <Picker.Item
+                          label="Pilih Metode Pembayaran"
+                          value="opo_cash"
+                        />
+                        <Picker.Item label="OPO Cash" value="opo_cash" />
+                        <Picker.Item label="OPO Points" value="opo_point" />
                       </Picker>
                     </Item>
                   </Item>
                 </Form>
                 <Text style={{marginLeft: 15}}>
                   Sisa Saldo OPO Cash{' '}
-                  <Text style={{fontWeight: 'bold'}}>Rp10.000.000</Text>
+                  <Text style={{fontWeight: 'bold'}}>
+                    {/* {this.props.user.getUser[0].opo_cash} */}
+                    {this.state.saldo}
+                  </Text>
                 </Text>
                 <View style={{marginTop: 30}}>
                   <Button
-                    onPress={() => alert('Coming soon.')}
+                    disabled={this.state.isDisable ? true : false}
+                    onPress={() => this.addPpobPLN()}
                     block
                     rounded
                     style={{backgroundColor: '#06B3BA'}}>
@@ -214,22 +285,25 @@ export default class PLN extends Component {
                         placeholder="Pilih Metode Pembayaran"
                         placeholderStyle={{color: '#bfc6ea'}}
                         placeholderIconColor="#007aff"
-                        selectedValue={this.state.selectedMethodPasca}
+                        selectedValue={this.state.opoType}
                         onValueChange={this.onValueChangeMethodPasca.bind(
                           this,
                         )}>
-                        <Picker.Item label="OPO Cash" value="key0" />
-                        <Picker.Item label="OPO Points" value="key1" />
+                        <Picker.Item label="OPO Cash" value="opo_cash" />
+                        <Picker.Item label="OPO Points" value="opo_point" />
                       </Picker>
                     </Item>
                   </Item>
                 </Form>
                 <Text style={{marginLeft: 15}}>
                   Sisa Saldo OPO Cash{' '}
-                  <Text style={{fontWeight: 'bold'}}>Rp10.000.000</Text>
+                  <Text style={{fontWeight: 'bold'}}>
+                    {/* {this.props.user.getUser} */}
+                  </Text>
                 </Text>
                 <View style={{marginTop: 30}}>
                   <Button
+                    disabled
                     onPress={() => alert('Coming soon.')}
                     block
                     rounded
@@ -249,3 +323,9 @@ export default class PLN extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(PLN);

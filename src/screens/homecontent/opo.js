@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {Text, View, BackHandler} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {connect} from 'react-redux';
 
 import {
   Button,
@@ -20,7 +21,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default class OPO extends Component {
+class OPO extends Component {
   componentDidMount() {
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -105,7 +106,9 @@ export default class OPO extends Component {
                       <Text style={{fontWeight: 'bold'}}>OPO Cash</Text>
                       <Text>
                         Saldo{' '}
-                        <Text style={{fontWeight: 'bold'}}>Rp1.000.000</Text>
+                        <Text style={{fontWeight: 'bold'}}>
+                          {this.props.user.getUser[0].opo_cash}
+                        </Text>
                       </Text>
                     </View>
                   </View>
@@ -152,3 +155,9 @@ export default class OPO extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(OPO);

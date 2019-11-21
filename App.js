@@ -216,11 +216,13 @@ import MenuTabs from './src/screens/menu';
 import HomeContent from './src/screens/homecontent';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+// import homeNav from './src/screens/menu/home/index';
 
 function App() {
   return (
     <Provider store={store}>
       <AppContainer />
+      {/* <HomeNav /> */}
     </Provider>
     // <AppContainer />
   );
@@ -444,6 +446,7 @@ const MainNavigator = createStackNavigator(
 );
 
 const AppContainer = createAppContainer(MainNavigator);
+// const HomeNav = homeNav;
 
 // const AppContainer = createAppContainer(StackNavigator);
 
