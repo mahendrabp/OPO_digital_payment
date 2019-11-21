@@ -2,7 +2,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 
-import {Text, View, Image, Dimensions, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  BackHandler,
+} from 'react-native';
 
 import styles from './style';
 import {ScrollView} from 'react-native-gesture-handler';

@@ -213,6 +213,7 @@ import HelpScreen from './src/screens/user/HelpScreen';
 import IntroScreen from './src/screens/IntroScreen';
 import RegisterScreen from './src/screens/user/RegisterScreen';
 import MenuTabs from './src/screens/menu';
+import HomeContent from './src/screens/homecontent';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -390,6 +391,12 @@ const MainNavigator = createStackNavigator(
     },
     OTPRegister: {
       screen: OTPRegister,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    HomeContent: {
+      screen: HomeContent,
       navigationOptions: {
         header: null,
       },
