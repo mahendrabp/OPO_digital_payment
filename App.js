@@ -225,6 +225,117 @@ function App() {
   );
 }
 
+// const MainNavigator = createStackNavigator(
+//   {
+//     SplashScreen: {
+//       screen: SplashScreen,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     RegisterScreen: {
+//       screen: RegisterScreen,
+//       navigationOptions: {
+//         headerStyle: {
+//           backgroundColor: '#534090',
+//         },
+//       },
+//     },
+//     LoginScreen: {
+//       screen: LoginScreen,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     IntroScreen: {
+//       screen: IntroScreen,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+//     HelpScreen: {
+//       screen: HelpScreen,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+//     SecurityCode: {
+//       screen: SecurityCode,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     SecurityCodeRegister: {
+//       screen: SecurityCodeRegister,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     OTP: {
+//       screen: OTP,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     OTPRegister: {
+//       screen: OTPRegister,
+//       navigationOptions: {
+//         header: null,
+//       },
+//     },
+
+//     MenuTabs: {
+//       screen: MenuTabs,
+//       navigationOptions: {
+//         header: (
+//           <View style={{borderBottomColor: '#4E2A87', borderBottomWidth: 1}}>
+//             <Header style={{backgroundColor: '#4E2A87'}} transparent>
+//               <Left />
+//               <Body>
+//                 <Title
+//                   style={{
+//                     color: '#FCFCFE',
+//                     marginLeft: -50,
+//                     fontWeight: 'bold',
+//                     fontSize: 25,
+//                   }}>
+//                   OPO
+//                 </Title>
+//               </Body>
+//               <Right>
+//                 <TouchableOpacity>
+//                   <Button transparent>
+//                     <Icon name="bell" color="#B3A4C9" size={20} />
+//                   </Button>
+//                 </TouchableOpacity>
+//                 <TouchableOpacity>
+//                   <Button transparent>
+//                     <Icon name="cog" color="#B3A4C9" size={25} />
+//                   </Button>
+//                 </TouchableOpacity>
+//               </Right>
+//             </Header>
+//           </View>
+//         ),
+//       },
+//     },
+//   },
+
+//   {
+//     initialRouteName: 'SplashScreen',
+//     headerMode: 'none',
+//   },
+// );
+
+// const AppContainer = createAppContainer(MainNavigator);
+
+// export default App;
+
 const MainNavigator = createStackNavigator(
   {
     SplashScreen: {
@@ -233,22 +344,6 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
-
-    RegisterScreen: {
-      screen: RegisterScreen,
-      navigationOptions: {
-        headerStyle: {
-          backgroundColor: '#534090',
-        },
-      },
-    },
-    LoginScreen: {
-      screen: LoginScreen,
-      navigationOptions: {
-        header: null,
-      },
-    },
-
     IntroScreen: {
       screen: IntroScreen,
       navigationOptions: {
@@ -261,34 +356,44 @@ const MainNavigator = createStackNavigator(
         header: null,
       },
     },
+    LoginScreen: {
+      screen: LoginScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    RegisterScreen: {
+      screen: RegisterScreen,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#534090',
+        },
+      },
+    },
     SecurityCode: {
       screen: SecurityCode,
       navigationOptions: {
         header: null,
       },
     },
-
-    SecurityCodeRegister: {
-      screen: SecurityCodeRegister,
-      navigationOptions: {
-        header: null,
-      },
-    },
-
     OTP: {
       screen: OTP,
       navigationOptions: {
         header: null,
       },
     },
-
+    SecurityCodeRegister: {
+      screen: SecurityCodeRegister,
+      navigationOptions: {
+        header: null,
+      },
+    },
     OTPRegister: {
       screen: OTPRegister,
       navigationOptions: {
         header: null,
       },
     },
-
     MenuTabs: {
       screen: MenuTabs,
       navigationOptions: {
@@ -325,13 +430,19 @@ const MainNavigator = createStackNavigator(
       },
     },
   },
-
   {
     initialRouteName: 'SplashScreen',
-    headerMode: 'none',
   },
 );
 
 const AppContainer = createAppContainer(MainNavigator);
+
+// const AppContainer = createAppContainer(StackNavigator);
+
+// class App extends Component {
+//   render() {
+//     return <AppContainer />;
+//   }
+// }
 
 export default App;
