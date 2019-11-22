@@ -11,11 +11,16 @@ const initialState = {
   authorization: '',
   isLoading: false,
   isError: false,
+  transfer: '',
 };
 
 // create a reducer for getting network from RESTful API
 const user = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_TRANSFER':
+      // console.log(action.payload.data.result.nominal)
+      return {
+      };
     case 'GET_USER_PENDING':
       return {
         isLoading: true,
