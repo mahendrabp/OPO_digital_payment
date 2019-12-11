@@ -98,7 +98,7 @@ class PLN extends Component {
 
     axios
       .post(
-        `http://localhost:5200/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
+        `http://54.175.184.232:5050/api/v1/balance/ppob/out/${this.props.user.getUser[0].user_id}`,
         {
           // eslint-disable-next-line radix
           nominal: parseInt(nominal),

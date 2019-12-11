@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {Text, View, BackHandler, TextInput} from 'react-native';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 import {
   Container,
   Header,
@@ -33,6 +33,19 @@ class SecurityCodeRegister extends Component {
     };
   }
 
+  goSubmit = async () => {
+    const {phone, name, email} = this.state;
+    const securityCode = this.state.input.toString().replace(/,/g, '');
+    // console.log(this.state.phone);
+
+    if (securityCode.length === 6) {
+      await this.props.dispatch(
+        signupstep2({phone, securityCode, name, email}),
+      );
+      await this.props.navigation.navigate('MenuTabs');
+    }
+  };
+
   componentDidMount() {
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -43,17 +56,6 @@ class SecurityCodeRegister extends Component {
   componentWillUnmount() {
     this.backHandler.remove();
   }
-
-  goSubmit = async () => {
-    const {phone, name, email} = this.state;
-    const securityCode = this.state.input.toString().replace(/,/g, '');
-    // console.log(this.state.phone);
-
-    if (securityCode.length === 6) {
-      await this.props.dispatch(signupstep2({phone, securityCode, name, email}));
-      await this.props.navigation.navigate('MenuTabs')
-    }
-  };
 
   goBack = () => {
     this.props.navigation.navigate('OTPRegister');
@@ -203,15 +205,27 @@ class SecurityCodeRegister extends Component {
                   this.lastTextInput = input;
                 }}
                 onChangeText={input => {
-                  this.setState({
-                    input: [...this.state.input, input],
-                  });
+                  console.log(input);
+                  this.setState(
+                    {
+                      input: [...this.state.input, input],
+                    },
+                    function() {
+                      this.goSubmit();
+                    },
+                  );
+                  // this.lastOne.focus();
                 }}
+                // onChangeText={input => {
+                //   this.setState({
+                //     input: [...this.state.input, input],
+                //   });
+                // }}
                 // onChangeText={input => {
                 //   this.setState({input: [...this.state.input, input]});
                 //   this.goSubmit;
                 // }}
-                onSubmitEditing={this.goSubmit}
+                // onSubmitEditing={this.goSubmit}
               />
             </Item>
           </View>

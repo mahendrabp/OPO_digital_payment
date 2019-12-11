@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, BackHandler, TextInput, Alert} from 'react-native';
+import {Text, View, BackHandler, TextInput, Alert, ToastAndroid} from 'react-native';
 import {
   Container,
   Header,
@@ -33,6 +33,14 @@ class OTP extends Component {
       'hardwareBackPress',
       this.handleBackPress,
     );
+    const msg = 'Your OTP is ' + this.state.otp
+    ToastAndroid.showWithGravityAndOffset(
+      msg,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50,
+    )
     // console.log(this.props.user);
   }
 
@@ -46,7 +54,8 @@ class OTP extends Component {
 
   goSecure = () => {
     const input = this.state.input.toString().replace(/,/g, '');
-    console.log(this.state.otp);
+    
+    // console.log(this.state.otp);
     if (this.state.otp === input) {
       this.props.navigation.navigate('SecurityCode');
     } else {

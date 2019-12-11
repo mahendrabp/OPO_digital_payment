@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, BackHandler, TextInput} from 'react-native';
+import {Text, View, BackHandler, TextInput, Alert, ToastAndroid} from 'react-native';
 import {connect} from 'react-redux';
 import {
   Container,
@@ -32,6 +32,14 @@ class OTPRegister extends Component {
       'hardwareBackPress',
       this.handleBackPress,
     );
+    const msg = 'Your OTP is ' + this.state.otp
+    ToastAndroid.showWithGravityAndOffset(
+      msg,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50,
+    )
   }
 
   componentWillUnmount() {
@@ -44,10 +52,16 @@ class OTPRegister extends Component {
 
   goSecure = () => {
     const input = this.state.input.toString().replace(/,/g, '');
-    console.log(this.state.otp);
+    
+    // console.log(this.state.otp);
     if (this.state.otp === input) {
       console.log('true');
       this.props.navigation.navigate('SecurityCodeRegister');
+    } else {
+      this.setState({
+        input: [],
+      });
+      Alert.alert('2FA salah');
     }
   };
 
@@ -180,16 +194,30 @@ class OTPRegister extends Component {
                         input: [this.state.input.concat(input)],
                       },
                       function() {
-                        console.log(
-                          'but wrong here (previous number): ' +
-                            this.state.input,
-                        );
+                        this.goSecure();
                       },
                     );
                     // this.lastOne.focus();
                   }}
-                  onSubmitEditing={this.goSecure()}
+                  // onSubmitEditing={this.goSecure()}
                   blurOnSubmit={false}
+                  // onChangeText={input => {
+                  //   console.log(input);
+                  //   this.setState(
+                  //     {
+                  //       input: [this.state.input.concat(input)],
+                  //     },
+                  //     function() {
+                  //       console.log(
+                  //         'but wrong here (previous number): ' +
+                  //           this.state.input,
+                  //       );
+                  //     },
+                  //   );
+                  //   // this.lastOne.focus();
+                  // }}
+                  // onSubmitEditing={this.goSecure()}
+                  // blurOnSubmit={false}
                 />
               </Item>
             </View>

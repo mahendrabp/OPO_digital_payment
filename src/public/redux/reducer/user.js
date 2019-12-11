@@ -106,7 +106,7 @@ const user = (state = initialState, action) => {
         'Authorization',
         action.payload.data.result.authorization,
       );
-      AsyncStorage.setItem('idUser', action.payload.data.result.id);
+      AsyncStorage.setItem('idUser', action.payload.data.result.user_id);
       console.log(AsyncStorage.getItem('Authorization'));
       return {
         isLoading: false,

@@ -2,10 +2,10 @@
 import axios from 'axios';
 
 // export action that get notes
-const URIGetUser = 'http://localhost:5050/api/v1/user/get/';
-const URILogin = 'http://localhost:5050/api/v1/user/login/';
-const URISignUp = 'http://localhost:5050/api/v1/user/signup/';
-const URITransfer = 'http://localhost:5050/api/v1/balance/transfer/';
+const URIGetUser = 'http://54.175.184.232:5050/api/v1/user/get/';
+const URILogin = 'http://54.175.184.232:5050/api/v1/user/login/';
+const URISignUp = 'http://54.175.184.232:5050/api/v1/user/signup/';
+const URITransfer = 'http://54.175.184.232:5050/api/v1/balance/transfer/';
 
 export const transfer = (phone, nominal, id) => {
   const data = {

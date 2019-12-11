@@ -20,7 +20,7 @@ import {
   CardItem,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import {getuser} from '../../public/redux/action/users';
 import {transfer} from '../../public/redux/action/users';

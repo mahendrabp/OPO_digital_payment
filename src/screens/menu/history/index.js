@@ -69,7 +69,7 @@ class HistCard extends React.Component {
   componentDidMount() {
     console.log('=====');
     console.log(this.props.id);
-    let link = 'http://localhost:5050/api/v1/balance/history/' + this.props.id;
+    let link = 'http://54.175.184.232:5050/api/v1/balance/history/' + this.props.id;
     // console.log(link)
     this.getData(link)
       .then(res => {

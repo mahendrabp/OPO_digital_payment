@@ -1,8 +1,40 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Alert} from 'react-native';
 import {Container, Header, Content, List, ListItem, Button} from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class SettingScreen extends Component {
+  signOut = () => {
+    Alert.alert(
+      'Perhatian!',
+      'Yakin ingin sign out?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel signout'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () =>
+            this.removeUser()
+              .then(() => {
+                this.props.navigation.navigate('LoginScreen');
+              })
+              .catch(e => {
+                console.log(e);
+              }),
+        },
+      ],
+      {cancelable: false},
+    );
+    // Alert.alert('Perhatian!', 'Masukan Nomor Ponsel');
+    // this.props.navigation.navigate('LoginScreen');
+  };
+  removeUser = async () => {
+    await AsyncStorage.removeItem('Authorization');
+    await AsyncStorage.removeItem('idUser');
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -43,7 +75,12 @@ class SettingScreen extends Component {
           <Text style={styles.textStyleVersion}>Version 1.0.0(001)</Text>
         </View>
         <View style={styles.viewButton}>
-          <Button bordered block rounded style={styles.buttonSigOut}>
+          <Button
+            bordered
+            block
+            rounded
+            style={styles.buttonSigOut}
+            onPress={() => this.signOut()}>
             <Text style={styles.textSignOut}>SIGN OUT</Text>
           </Button>
         </View>
