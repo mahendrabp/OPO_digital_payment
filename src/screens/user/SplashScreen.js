@@ -15,10 +15,23 @@ export default class SplashScreen extends Component {
     //     this.props.navigation.navigate('IntroScreen');
     //   }, 4000);
     // }
-    setTimeout(() => {
-      this.props.navigation.navigate('IntroScreen');
-    }, 4000);
+    // setTimeout(() => {
+    //   this.props.navigation.navigate('IntroScreen');
+    // }, 4000);
+    this.getToken();
   }
+
+  getToken = async () => {
+    const token = await AsyncStorage.getItem('Authorization');
+    console.log(token);
+    if (token) {
+      this.props.navigation.replace('MenuTabs');
+    } else {
+      setTimeout(() => {
+        this.props.navigation.navigate('IntroScreen');
+      }, 4000);
+    }
+  };
 
   render() {
     return (
